@@ -1,0 +1,30 @@
+{
+  "name": "codeial",
+  "version": "1.0.0",
+  "description": "Social Media Web Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Divya Choudhary",
+  "license": "ISC",
+  "dependencies": {
+    "del": "^4.1.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-imagemin": "^6.0.0",
+    "gulp-rev": "^9.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify-es": "^1.0.4",
+    "mongoose": "^5.13.17",
+    "node-sass-middleware": "^1.0.1",
+    "nodemon": "^2.0.22",
+    "sass": "^1.62.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

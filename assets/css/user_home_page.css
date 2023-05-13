@@ -1,0 +1,80 @@
+#main-body {
+  background-color: white;
+  width: 100%;
+  padding: 20px; }
+  #main-body .height-main {
+    height: 80vh; }
+  #main-body .flex {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; }
+  #main-body .flex-center-vertical {
+    align-items: center; }
+  #main-body .flex-center-horizontal {
+    justify-content: center; }
+  #main-body .center {
+    text-align: center; }
+  #main-body .col-more_people {
+    width: 30%;
+    padding: 0 10px;
+    height: inherit;
+    overflow: auto; }
+  #main-body .col-posts {
+    width: 40%;
+    height: inherit;
+    overflow: auto;
+    border-left: solid grey 2px;
+    border-right: solid grey 2px;
+    padding: 0 10px; }
+  #main-body .col-friends {
+    width: 30%;
+    padding: 0 10px;
+    height: inherit;
+    overflow: auto; }
+
+.morepeople-header {
+  display: flex;
+  border-bottom: solid gray 2px; }
+  .morepeople-header .border-left-right {
+    flex-grow: 1;
+    border-left: solid gray 2px;
+    border-right: solid gray 2px; }
+  .morepeople-header .morepeople-icon {
+    cursor: pointer;
+    padding: 2px;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .morepeople-header .morepeople-icon i {
+      font-size: 1.5rem; }
+    .morepeople-header .morepeople-icon .like {
+      color: rgba(255, 0, 0, 0.74); }
+    .morepeople-header .morepeople-icon .like:hover {
+      color: rgba(255, 0, 0, 0.507); }
+    .morepeople-header .morepeople-icon .angry {
+      color: #ff6207cc; }
+    .morepeople-header .morepeople-icon .angry:hover {
+      color: #ff62079a; }
+    .morepeople-header .morepeople-icon .laugh {
+      color: #ffc107; }
+    .morepeople-header .morepeople-icon .laugh:hover {
+      color: #ffc107b6; }
+    .morepeople-header .morepeople-icon .thumbs-up {
+      color: blue; }
+    .morepeople-header .morepeople-icon .thumbs-up:hover {
+      color: rgba(0, 0, 255, 0.726); }
+  .morepeople-header .active {
+    background-color: antiquewhite; }
+
+@media screen and (max-width: 620px) {
+  #main-body .col-posts,
+  #main-body .col-friends,
+  #main-body .col-more_people {
+    display: none;
+    width: 100%; }
+  #main-body .col-posts {
+    border: none; } }
+
+::-webkit-scrollbar {
+  width: 0px; }

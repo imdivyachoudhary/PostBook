@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="<%= assetPath('/css/home_page.css') %>" />
+<link rel="stylesheet" href="<%= assetPath('/css/form.css') %>" />
+<div id="main-body" class="container-fluid">
+  <div class="flex-center center">
+    <div class="flex-center center col-60">
+      <div class="img-box">
+        <img src="<%= assetPath('/images/home-page.jpg') %>" alt="" />
+      </div>
+    </div>
+
+    <div class="flex-center center col-40">
+      <form class="form-box" action="" method="post">
+        <div class="form-heading">SIGN IN</div>
+        <div class="form-item">
+          <label for="email" class="form-label">Email-id</label>
+          <input type="email" class="form-control" id="email" name="email" />
+        </div>
+        <div class="form-item">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+          <span><a href="">Forgot Password?</a></span>
+        </div>
+        <div class="form-item form-button">
+          <button type="submit" class="btn btn-success">SIGN IN</button>
+          <div>
+            <span>Not a Member?<a href="/user/sign-up">SIGN UP</a></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

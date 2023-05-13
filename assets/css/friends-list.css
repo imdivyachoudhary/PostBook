@@ -1,0 +1,51 @@
+.friends-list {
+  height: inherit;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column; }
+  .friends-list .friend {
+    border-bottom: solid gainsboro 1px;
+    padding: 2px;
+    display: flex;
+    align-items: center; }
+    .friends-list .friend .display_pic {
+      padding: 2px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .friends-list .friend .display_pic i {
+        font-size: 2rem; }
+      .friends-list .friend .display_pic img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%; }
+    .friends-list .friend .display_name {
+      flex-grow: 1;
+      margin-left: 5px;
+      padding: 2px;
+      font-size: 1.5rem;
+      color: #524f4f;
+      text-align: left; }
+    .friends-list .friend .add-friend-icon {
+      cursor: pointer;
+      text-align: end; }
+      .friends-list .friend .add-friend-icon i {
+        font-size: 1.5rem; }
+      .friends-list .friend .add-friend-icon button {
+        background-color: #4787bf;
+        font-weight: bold;
+        color: white; }
+      .friends-list .friend .add-friend-icon button:hover {
+        background-color: #3b78ad; }
+    .friends-list .friend .message-icon {
+      cursor: pointer;
+      text-align: end; }
+      .friends-list .friend .message-icon i {
+        font-size: 1.5rem;
+        color: #4787bf; }

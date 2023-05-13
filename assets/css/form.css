@@ -1,0 +1,40 @@
+.form-box {
+  width: 70%;
+  text-align: left;
+  padding: 10px 30px;
+  border: 2px solid #e9ecef;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap; }
+  .form-box .form-heading {
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 2rem;
+    border-bottom: white solid 2px;
+    box-sizing: border-box;
+    margin-bottom: 30px; }
+  .form-box .form-item {
+    margin: 10px;
+    width: 100%; }
+  .form-box label {
+    font-weight: bold; }
+  .form-box .form-button {
+    margin-top: 30px;
+    text-align: center; }
+  .form-box button {
+    width: 30%; }
+  .form-box span {
+    padding: 2px 1px;
+    color: gray; }
+    .form-box span a {
+      color: gray; }
+
+@media screen and (max-width: 620px) {
+  .form-box {
+    padding: 5px 5px; }
+    .form-box .form-button button {
+      width: auto; } }

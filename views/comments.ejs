@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="<%= assetPath('/css/comments.css') %>" />
+
+<div class="comments-list">
+  <% for( let i = 0; i < 20; i++ ) { %>
+
+  <div class="comment-item">
+    <div class="comment-header">
+      <div class="comment-user">
+        <div class="display_pic">
+          <!-- <i class="fas fa-user-circle"></i> -->
+          <img src="<%= assetPath('/images/home-page.jpg') %>" alt="" />
+        </div>
+        <div class="display_name">Divya Choudhary</div>
+      </div>
+      <div class="comment-reply-button">Reply</div>
+      <div class="comment-like-button">
+        <div class="like-icon"><i class="fas fa-heart liked"></i></div>
+        <div class="like-count">3</div>
+      </div>
+    </div>
+    <div class="comment-body">
+      <div class="comment">It is a comment It is a comment It is a comment It is a commentIt is a comment It is a comment It is a comment It is a comment</div>
+      <div class="view-comment-replies-button">View Replies</div>
+    </div>
+  </div>
+  <% } %>
+</div>
+
+<script src="<%= assetPath('/js/comments.js') %>"></script>

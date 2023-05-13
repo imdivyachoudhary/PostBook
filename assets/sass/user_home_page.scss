@@ -1,0 +1,121 @@
+#main-body {
+  background-color: white;
+  // min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+
+  .height-main {
+    height: 80vh;
+  }
+  .flex {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .flex-center-vertical {
+    align-items: center;
+  }
+
+  .flex-center-horizontal {
+    justify-content: center;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .col-more_people {
+    width: 30%;
+    padding: 0 10px;
+    height: inherit;
+    overflow: auto;
+  }
+
+  .col-posts {
+    width: 40%;
+    height: inherit;
+    overflow: auto;
+    border-left: solid grey 2px;
+    border-right: solid grey 2px;
+    padding: 0 10px;
+  }
+
+  .col-friends {
+    width: 30%;
+    padding: 0 10px;
+    height: inherit;
+    overflow: auto;
+  }
+}
+
+.morepeople-header {
+  display: flex;
+  border-bottom: solid gray 2px;
+  // background-color: rgb(153, 168, 175);
+
+  .border-left-right{
+    flex-grow: 1;
+    border-left: solid gray 2px;
+    border-right: solid gray 2px;
+  }
+
+  .morepeople-icon {
+    cursor: pointer;
+    padding: 2px;
+    // height: 80px;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size: 1.5rem;
+    }
+    .like {
+      color: rgba(255, 0, 0, 0.74);
+    }
+    .like:hover {
+      color: rgba(255, 0, 0, 0.507);
+    }
+    .angry {
+      color: #ff6207cc;
+    }
+    .angry:hover {
+      color: #ff62079a;
+    }
+    .laugh {
+      color: #ffc107;
+    }
+    .laugh:hover {
+      color: #ffc107b6;
+    }
+    .thumbs-up {
+      color: blue;
+    }
+    .thumbs-up:hover {
+      color: rgba(0, 0, 255, 0.726);
+    }
+  }
+  .active {
+    background-color: antiquewhite;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  #main-body {
+    .col-posts,
+    .col-friends,
+    .col-more_people {
+      display: none;
+      width: 100%;
+    }
+
+    .col-posts {
+      border: none;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}

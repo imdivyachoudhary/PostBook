@@ -1,0 +1,62 @@
+<header id="layout-header">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-brand">PostBook</div>
+      <form class="d-flex">
+        <% if (title!='Sign In' && title!='Sign Up') { %>
+        <!-- <div class="logout">
+          <i class="fas fa-power-off"></i>
+        </div> -->
+        <!-- <button type="button" class="btn btn-danger"><i class="fas fa-power-off"></i>&nbsp;&nbsp;</button> -->
+        <div class="">
+          <div class="icon">
+            <a href="/user/home"><i class="fas fa-home home-icon"></i></a>
+          </div>
+        </div>
+        <div class="show-sm">
+          <div class="icon">
+            <a href="/user/home/chats"
+              ><i class="fas fa-comments home-icon"></i
+            ></a>
+          </div>
+        </div>
+        <div class="show-sm">
+          <div class="icon">
+            <a href="/user/home/more_people"
+              ><i class="fas fa-user-friends home-icon"></i
+            ></a>
+          </div>
+        </div>
+        <div class="show-lg">
+          <div class="icon">
+            <a href="/user/profile"
+              ><i class="fas fa-user-circle user-icon"></i
+            ></a>
+          </div>
+        </div>
+        <div class="dropstart show-sm">
+          <div class="icon" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle user-icon"></i>
+          </div>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+            <li>
+              <a class="dropdown-item" href="/user/profile/posts">Posts</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/user/profile/friends">Friends</a>
+            </li>
+          </ul>
+        </div>
+        <% } else { %> <% if (title=='Sign In') { %>
+        <a href="/user/sign-up"
+          ><button type="button" class="btn btn-success">SIGN UP</button></a
+        >
+        <% } else if (title=='Sign Up') { %>
+        <a href="/user/sign-in"
+          ><button type="button" class="btn btn-success">SIGN IN</button></a
+        ><% } %> <% } %>
+      </form>
+    </div>
+  </nav>
+</header>

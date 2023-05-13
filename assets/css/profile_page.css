@@ -1,0 +1,113 @@
+#main-body {
+  background-color: white;
+  width: 100%;
+  padding: 20px; }
+  #main-body .height-main {
+    height: 80vh; }
+  #main-body .flex {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; }
+  #main-body .flex-center-vertical {
+    align-items: center; }
+  #main-body .flex-center-horizontal {
+    justify-content: center; }
+  #main-body .center {
+    text-align: center; }
+  #main-body .col-profile {
+    width: 30%;
+    padding: 0 10px; }
+  #main-body .col-posts {
+    width: 45%;
+    height: inherit;
+    overflow: auto;
+    border-left: solid grey 2px;
+    border-right: solid grey 2px;
+    padding: 0 10px; }
+  #main-body .col-friends {
+    width: 25%;
+    padding: 0 10px;
+    height: inherit;
+    overflow: auto; }
+
+.profile-box {
+  padding: 10px;
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .profile-box .profile-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    .profile-box .profile-header .display_pic {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .profile-box .profile-header .display_pic i {
+        font-size: 5rem; }
+      .profile-box .profile-header .display_pic img {
+        height: 80%;
+        width: 80%;
+        border-radius: 50%; }
+    .profile-box .profile-header .display_name {
+      font-size: 1.5rem;
+      font-weight: bolder; }
+  .profile-box .profile-body {
+    line-height: 2;
+    width: 80%;
+    margin-top: 10px;
+    padding: 10px;
+    border-top: solid #0d6efd 3px; }
+    .profile-box .profile-body .item {
+      overflow: auto;
+      border-bottom: solid gray 1px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: start;
+      flex-wrap: wrap; }
+      .profile-box .profile-body .item .item-name {
+        color: grey;
+        font-size: 1.2rem; }
+      .profile-box .profile-body .item .item-change {
+        color: cadetblue;
+        font-weight: bold; }
+  .profile-box .profile-footer {
+    width: 80%;
+    margin-top: 10px;
+    padding: 10px; }
+    .profile-box .profile-footer .item {
+      display: flex;
+      justify-content: center; }
+      .profile-box .profile-footer .item .item-icon {
+        padding: 2px; }
+        .profile-box .profile-footer .item .item-icon .password-icon {
+          color: green; }
+        .profile-box .profile-footer .item .item-icon .logout-icon {
+          color: #dc3545; }
+      .profile-box .profile-footer .item .item-name {
+        padding: 2px;
+        color: cadetblue;
+        font-weight: bold;
+        font-size: 1.2rem; }
+
+@media screen and (max-width: 620px) {
+  #main-body .col-posts,
+  #main-body .col-friends,
+  #main-body .col-profile {
+    display: none;
+    width: 100%; }
+  #main-body .col-posts {
+    border: none; }
+  #main-body .col-profile .profile-body {
+    width: 100%; }
+    #main-body .col-profile .profile-body .item {
+      flex-direction: column;
+      align-items: start; } }
+
+::-webkit-scrollbar {
+  width: 0px; }

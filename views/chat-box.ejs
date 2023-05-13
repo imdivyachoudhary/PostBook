@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="<%= assetPath('/css/chat-box.css') %>" />
+
+<div class="messages-list" id="messages-list">
+  <% for( let i = 0; i < 30; i++ ) { %>
+
+  <div class="message-item">
+    <div class="friend-message"><div>Hi</div></div>
+  </div>
+
+  <div class="message-item" <% if (i==29) { %> id="last-msg"
+   
+  <% } %>>
+    <div class="user-message"><div>Hello</div></div>
+  </div>
+
+  <% } %>
+</div>
+
+<script src="<%= assetPath('/js/chat-box.js') %>"></script>

@@ -1,0 +1,17 @@
+footer{
+    color: white;
+    background: grey;
+    // height: 10vh;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-evenly;
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    .footer-nav{
+        ul{
+            list-style: none;
+        }
+    }
+}

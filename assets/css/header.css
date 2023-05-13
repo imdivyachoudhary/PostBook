@@ -1,0 +1,49 @@
+header nav {
+  background-color: #4787bf;
+  height: 80px; }
+  header nav .navbar-brand {
+    color: white;
+    font-family: "Alkatra", cursive;
+    font-size: 30px; }
+  header nav .icon {
+    cursor: pointer;
+    background-color: antiquewhite;
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    header nav .icon a {
+      text-decoration: none;
+      color: #721515; }
+    header nav .icon a:hover {
+      color: #152b72; }
+    header nav .icon .user-icon {
+      font-size: 2.5rem; }
+    header nav .icon .home-icon {
+      font-size: 1.5rem; }
+    header nav .icon img {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%; }
+  header nav .logout {
+    background-color: #dc3545;
+    color: white;
+    margin-left: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+
+.show-sm {
+  display: none; }
+
+@media screen and (max-width: 620px) {
+  .show-sm {
+    display: block; }
+  .show-lg {
+    display: none; } }

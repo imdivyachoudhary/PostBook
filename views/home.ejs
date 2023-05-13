@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="<%= assetPath('/css/user_home_page.css') %>" />
+
+<div id="main-body">
+  <div class="flex height-main">
+    <div class="col-more_people" id="more_people">
+      <div class="center">
+        <h1>More People</h1>
+        <div class="morepeople-header">
+          <div
+            class="morepeople-icon active"
+            onclick="showMorePeopleList(this,'more_people')"
+          >
+            Add Friends
+          </div>
+          <div
+            class="morepeople-icon border-left-right"
+            onclick="showMorePeopleList(this,'received_requests')"
+          >
+            Received Requests
+          </div>
+          <div
+            class="morepeople-icon"
+            onclick="showMorePeopleList(this,'sent_requests')"
+          >
+            Sent Requests
+          </div>
+        </div>
+        <div id="morepeople"></div>
+      </div>
+    </div>
+    <div class="col-posts" id="home">
+      <div class="flex flex-center-horizontal">
+        <h1>Posts</h1>
+        <%- include('post') %>
+      </div>
+    </div>
+    <div class="col-friends" id="chats">
+      <div class="flex flex-center-horizontal">
+        <h1>Chat-Box</h1>
+        <%- include('friends-list') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="<%= assetPath('/js/user_home_page.js') %>"></script>

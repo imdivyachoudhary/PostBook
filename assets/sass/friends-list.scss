@@ -1,0 +1,78 @@
+.friends-list {
+  height: inherit;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  //   align-items: center;
+  .friend {
+    border-bottom: solid gainsboro 1px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    .display_pic {
+      padding: 2px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        font-size: 2rem;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    .display_name {
+      flex-grow: 1;
+      margin-left: 5px;
+      padding: 2px;
+      font-size: 1.5rem;
+      color: rgb(82, 79, 79);
+      text-align: left;
+      // cursor: pointer;
+    }
+    // .display_name:hover {
+    //   color: black;
+    // }
+
+    .add-friend-icon {
+      cursor: pointer;
+      text-align: end;
+      i {
+        font-size: 1.5rem;
+        // color: #4787bf;
+      }
+      button {
+        background-color: #4787bf;
+        font-weight: bold;
+        color: white;
+      }
+      button:hover {
+        background-color: #3b78ad;
+      }
+    }
+
+    .message-icon {
+      cursor: pointer;
+      
+      text-align: end;
+      i {
+        font-size: 1.5rem;
+        color: #4787bf;
+      }
+    }
+  }
+}
+
+// .modal-body {
+// height: 500px;
+// background-color: antiquewhite;
+// }

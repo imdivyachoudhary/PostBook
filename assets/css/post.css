@@ -1,0 +1,93 @@
+.posts {
+  height: inherit;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .posts .post {
+    margin-top: 20px;
+    width: 90%;
+    border: solid gainsboro 3px; }
+    .posts .post .post-header {
+      display: flex;
+      align-items: center; }
+      .posts .post .post-header .display_pic {
+        padding: 2px;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .posts .post .post-header .display_pic i {
+          font-size: 3rem; }
+        .posts .post .post-header .display_pic img {
+          height: 80%;
+          width: 80%;
+          border-radius: 50%; }
+      .posts .post .post-header .display_name_time {
+        text-align: start;
+        padding-right: 5px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        line-height: 1.2; }
+        .posts .post .post-header .display_name_time .display_name {
+          font-size: 1.5rem; }
+        .posts .post .post-header .display_name_time .display_time {
+          color: gray; }
+    .posts .post .post-body {
+      background-color: gainsboro;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .posts .post .post-body img {
+        max-height: 100%;
+        max-width: 100%; }
+    .posts .post .post-footer {
+      background-color: gray;
+      color: white;
+      padding: 2px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .posts .post .post-footer .likes {
+        padding: 2px;
+        display: flex;
+        align-items: center; }
+        .posts .post .post-footer .likes .icon {
+          cursor: pointer;
+          padding: 2px; }
+          .posts .post .post-footer .likes .icon i {
+            font-size: 1.5rem; }
+          .posts .post .post-footer .likes .icon .liked {
+            color: #ffc107; }
+        .posts .post .post-footer .likes .count {
+          cursor: pointer;
+          padding: 2px; }
+      .posts .post .post-footer .comments {
+        padding: 2px;
+        display: flex;
+        align-items: center; }
+        .posts .post .post-footer .comments .icon {
+          cursor: pointer;
+          padding: 2px; }
+          .posts .post .post-footer .comments .icon i {
+            font-size: 1.5rem; }
+        .posts .post .post-footer .comments .count {
+          padding: 2px; }
+
+@media screen and (max-width: 620px) {
+  .posts .post {
+    width: 100%; }
+    .posts .post .post-header .display_name_time .display_name {
+      font-size: 1.3rem; }
+    .posts .post .post-header .display_name_time .display_time {
+      font-size: 0.7rem; } }

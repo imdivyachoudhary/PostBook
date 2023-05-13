@@ -1,0 +1,44 @@
+#main-body {
+  background-color: black;
+  color: white;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+}
+.center {
+  justify-content: center;
+}
+
+.col-60{
+  width: 60%;
+}
+.col-40{
+  width: 40%;
+}
+
+@media screen and (max-width:620px) {
+  #main-body{
+    background-image: url('/images/home-page.jpg');
+    background-repeat: no-repeat;
+  }
+
+  .col-60{
+    display: none;
+  }
+  
+  .col-40{
+    width: 100%;
+  }
+}
+
