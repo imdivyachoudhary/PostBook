@@ -1,8 +1,12 @@
 const User = require("../models/user");
+const { use } = require("../routes");
 
 module.exports.signIn = (req, res) => {
   // console.log(req.cookies);
   // res.cookie("user_id", 23);
+  if (req.cookies.user_id) {
+    return res.redirect("/user/profile");
+  }
   return res.render("sign-in", {
     title: "Sign In",
   });
@@ -13,7 +17,21 @@ module.exports.loginUser = (req, res) => {
   // if (req.body.password != req.body.confirm_password) {
   //   return res.redirect("back");
   // }
-  return res.redirect("/user/profile");
+
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) {
+      console.log("Error in finding User while Sign-in");
+      return res.redirect("back");
+    }
+    if (!user) {
+      return res.redirect("back");
+    } else if (req.body.password != user.password) {
+      return res.redirect("back");
+    } else {
+      res.cookie("user_id", user.id);
+      return res.redirect("/user/profile");
+    }
+  });
 };
 
 module.exports.signUp = (req, res) => {
@@ -48,10 +66,30 @@ module.exports.createUser = (req, res) => {
   });
 };
 
+module.exports.signOut = (req, res) => {
+  // console.log(req.cookies);
+  // res.cookie("user_id", 23);
+  if (req.cookies.user_id) {
+    res.clearCookie("user_id");
+  }
+  return res.redirect("/user/sign-in");
+};
+
 module.exports.profile = (req, res) => {
-  return res.render("profile", {
-    title: "Profile",
-  });
+  if (req.cookies.user_id) {
+    User.findById(req.cookies.user_id, function (err, user) {
+      if (err) {
+        console.log("Error in finding User :", err);
+        return;
+      }
+      return res.render("profile", {
+        title: "Profile",
+        user: user,
+      });
+    });
+  } else {
+    return res.redirect("/user/sign-in");
+  }
 };
 
 module.exports.home = (req, res) => {

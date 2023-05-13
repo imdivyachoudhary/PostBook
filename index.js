@@ -26,18 +26,18 @@ app.use(express.urlencoded());
 
 app.use(cookieParser());
 
-// const sassMiddleware = require("node-sass-middleware");
-// if (env.name == "development") {
-//   app.use(
-//     sassMiddleware({
-//       src: path.join(__dirname, env.asset_path, "sass"),
-//       dest: path.join(__dirname, env.asset_path, "css"),
-//       debug: true,
-//       outputStyle: "extended",
-//       prefix: "/css",
-//     })
-//   );
-// }
+const sassMiddleware = require("node-sass-middleware");
+if (env.name == "development") {
+  app.use(
+    sassMiddleware({
+      src: path.join(__dirname, env.asset_path, "sass"),
+      dest: path.join(__dirname, env.asset_path, "css"),
+      debug: true,
+      outputStyle: "extended",
+      prefix: "/css",
+    })
+  );
+}
 
 app.use(express.static(env.asset_path));
 app.use("/uploads", express.static(__dirname + "/uploads"));

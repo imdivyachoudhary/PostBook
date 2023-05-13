@@ -94,6 +94,10 @@
         color: cadetblue;
         font-weight: bold;
         font-size: 1.2rem; }
+    .profile-box .profile-footer .logout {
+      cursor: pointer; }
+      .profile-box .profile-footer .logout a {
+        text-decoration: none; }
 
 @media screen and (max-width: 620px) {
   #main-body .col-posts,
