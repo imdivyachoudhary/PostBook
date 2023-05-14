@@ -48,7 +48,7 @@ module.exports.createUser = (req, res) => {
   });
 };
 
-module.exports.signUp = (req, res) => {
+module.exports.signOut = (req, res) => {
   return res.redirect("/user/sign-in");
 };
 

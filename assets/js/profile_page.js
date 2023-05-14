@@ -7,4 +7,8 @@
     ele.setAttribute("style", "display:block");
     // console.log(ele);
   }
+
+  function user_signOut() {
+    window.location.href = "/user/sign-out";
+  }
 }
