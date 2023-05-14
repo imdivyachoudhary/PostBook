@@ -48,6 +48,10 @@ module.exports.createUser = (req, res) => {
   });
 };
 
+module.exports.signUp = (req, res) => {
+  return res.redirect("/user/sign-in");
+};
+
 module.exports.profile = (req, res) => {
   return res.render("profile", {
     title: "Profile",
