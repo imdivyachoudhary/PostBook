@@ -30,6 +30,7 @@
         .comments-list .comment-item .comment-header .comment-user .display_name {
           font-weight: bold; }
       .comments-list .comment-item .comment-header .comment-reply-button {
+        padding: 0 4px;
         cursor: pointer;
         font-weight: bold; }
       .comments-list .comment-item .comment-header .comment-like-button {

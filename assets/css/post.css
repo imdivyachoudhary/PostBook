@@ -41,6 +41,14 @@
           font-size: 1.5rem; }
         .posts .post .post-header .display_name_time .display_time {
           color: gray; }
+      .posts .post .post-header .delete-post {
+        display: flex;
+        align-items: center;
+        padding: 5px; }
+        .posts .post .post-header .delete-post i {
+          padding: 2px;
+          cursor: pointer;
+          font-size: 1.2rem; }
     .posts .post .post-body {
       background-color: gainsboro;
       max-height: 400px;

@@ -37,6 +37,16 @@
     border-left: solid grey 2px;
     border-right: solid grey 2px;
     padding: 0 10px;
+    .heading{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i{
+        padding: 2px;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
   }
 
   .col-friends {
@@ -167,4 +177,12 @@
 
 ::-webkit-scrollbar {
   width: 0px;
+}
+
+#modalAddPost{
+  .modal-body{
+    div{
+      padding: 2px;
+    }
+  }
 }

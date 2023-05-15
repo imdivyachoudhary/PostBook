@@ -24,6 +24,14 @@
     border-left: solid grey 2px;
     border-right: solid grey 2px;
     padding: 0 10px; }
+    #main-body .col-posts .heading {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      #main-body .col-posts .heading i {
+        padding: 2px;
+        font-size: 1.5rem;
+        cursor: pointer; }
   #main-body .col-friends {
     width: 25%;
     padding: 0 10px;
@@ -115,3 +123,6 @@
 
 ::-webkit-scrollbar {
   width: 0px; }
+
+#modalAddPost .modal-body div {
+  padding: 2px; }

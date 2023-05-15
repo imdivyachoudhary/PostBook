@@ -41,7 +41,12 @@
     </div>
     <div class="col-posts" id="posts">
       <div class="flex flex-center-horizontal">
-        <h1>Posts</h1>
+        <div class="heading">
+          <div data-bs-toggle="modal" data-bs-target="#modalAddPost">
+            <i class="fa-regular fa-square-plus"></i>
+          </div>
+          <h1>Posts</h1>
+        </div>
         <%- include('post') %>
       </div>
     </div>
@@ -49,6 +54,38 @@
       <div class="flex flex-center-horizontal">
         <h1>Friends</h1>
         <%- include('friends-list') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="modalAddPost"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Post</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div><input type="file" name="post-image" class="form-control"></div>
+        <div><textarea class="form-control" name="post_content" id="" cols="30" rows="10" placeholder="Enter text..."></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-success">Post</button>
       </div>
     </div>
   </div>
