@@ -3,6 +3,9 @@ const User = require("../models/user");
 module.exports.signIn = (req, res) => {
   // console.log(req.cookies);
   // res.cookie("user_id", 23);
+  if (req.isAuthenticated()) {
+    return res.redirect("/user/profile");
+  }
   return res.render("sign-in", {
     title: "Sign In",
   });
@@ -17,6 +20,9 @@ module.exports.loginUser = (req, res) => {
 };
 
 module.exports.signUp = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/user/profile");
+  }
   return res.render("sign-up", {
     title: "Sign Up",
   });
@@ -49,7 +55,14 @@ module.exports.createUser = (req, res) => {
 };
 
 module.exports.signOut = (req, res) => {
-  return res.redirect("/user/sign-in");
+  req.logout(function (err) {
+    if (err) {
+      // return next(err);
+      console.log(err);
+      return res.redirect("back");
+    }
+    return res.redirect("/user/sign-in");
+  });
 };
 
 module.exports.profile = (req, res) => {
