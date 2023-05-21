@@ -12,6 +12,7 @@ const db = require("./config/mongoose");
 const expressLayouts = require("express-ejs-layouts");
 
 const cookieParser = require("cookie-parser");
+// const bodyParser = require("body-parser");
 
 const session = require("express-session");
 const passport = require("passport");
@@ -22,27 +23,30 @@ require("./config/view-helper")(app);
 
 app.set("view engine", "ejs");
 
+app.use(express.urlencoded());
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded());
+
+app.use(cookieParser());
+
 app.use(expressLayouts);
 app.set("layout", "layout");
 app.set("layout extractScripts", true);
 app.set("layout extractStyles", true);
 
-app.use(express.urlencoded());
-
-app.use(cookieParser());
-
-const sassMiddleware = require("node-sass-middleware");
-if (env.name == "development") {
-  app.use(
-    sassMiddleware({
-      src: path.join(__dirname, env.asset_path, "sass"),
-      dest: path.join(__dirname, env.asset_path, "css"),
-      debug: true,
-      outputStyle: "extended",
-      prefix: "/css",
-    })
-  );
-}
+// const sassMiddleware = require("node-sass-middleware");
+// if (env.name == "development") {
+//   app.use(
+//     sassMiddleware({
+//       src: path.join(__dirname, env.asset_path, "sass"),
+//       dest: path.join(__dirname, env.asset_path, "css"),
+//       debug: true,
+//       outputStyle: "extended",
+//       prefix: "/css",
+//     })
+//   );
+// }
 
 app.use(express.static(env.asset_path));
 app.use("/uploads", express.static(__dirname + "/uploads"));
@@ -57,15 +61,14 @@ app.use(
       maxAge: 1000 * 60 * 100,
     },
     store: new mongoStore(
-        {
-            mongooseConnection: db,
-            autoRemove: 'disabled'
-        
-        },
-        function(err){
-            console.log(err ||  'connect-mongodb setup ok');
-        }
-    )
+      {
+        mongooseConnection: db,
+        autoRemove: "disabled",
+      },
+      function (err) {
+        console.log(err || "connect-mongodb setup ok");
+      }
+    ),
   })
 );
 app.use(passport.initialize());

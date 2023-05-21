@@ -1,4 +1,7 @@
+const { render } = require("ejs");
 const User = require("../models/user");
+const fs = require("fs");
+const path = require("path");
 
 module.exports.signIn = (req, res) => {
   // console.log(req.cookies);
@@ -16,6 +19,7 @@ module.exports.loginUser = (req, res) => {
   // if (req.body.password != req.body.confirm_password) {
   //   return res.redirect("back");
   // }
+  // console.log(req.body);
   return res.redirect("/user/profile");
 };
 
@@ -66,9 +70,60 @@ module.exports.signOut = (req, res) => {
 };
 
 module.exports.profile = (req, res) => {
-  return res.render("profile", {
+  return res.render("profile_page", {
     title: "Profile",
   });
+};
+
+module.exports.update = async (req, res) => {
+  // console.log(req.body);
+  if (req.user.id == req.params.id) {
+    let user = await User.findById(req.params.id);
+
+    if (req.body.name) user.name = req.body.name;
+    if (req.body.email) user.email = req.body.email;
+    user.save();
+
+    // return res.render("profile", {
+    //   layout: false,
+    // });
+    return res.redirect("back");
+  } else {
+    // return res.render("profile", {
+    //   layout: false,
+    // });
+    return res.redirect("back");
+  }
+};
+
+module.exports.updateAvatar = async (req, res) => {
+  // console.log(req.body);
+  // console.log(JSON.stringify(req.body));
+  // console.log(req.files);
+  // console.log(req.file);
+  // console.log(req);
+  // return res.redirect("back");
+  if (req.user.id == req.params.id) {
+    let user = await User.findById(req.params.id);
+    User.uploadedAvatar(req, res, function (err) {
+      if (err) {
+        console.log("Multer Error : ", err);
+      }
+      if (req.file) {
+        // console.log(req.file);
+        if (user.avatar) {
+          fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+        }
+        user.avatar = User.avatarPath + "/" + req.file.filename;
+        user.save();
+      }
+    });
+    // });
+    // return res.render("profile", {
+    //   layout: false,
+    // });
+    return res.redirect("back");
+  }
 };
 
 module.exports.home = (req, res) => {

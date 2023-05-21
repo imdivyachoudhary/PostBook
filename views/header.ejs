@@ -29,9 +29,13 @@
         </div>
         <div class="show-lg">
           <div class="icon">
-            <a href="/user/profile"
-              ><i class="fas fa-user-circle user-icon"></i
-            ></a>
+            <a href="/user/profile">
+              <% if (user.avatar) { %>
+                <img src="<%= user.avatar %>" alt="" />
+                <% } else { %>
+                <i class="fas fa-user-circle user-icon"></i>
+                <% } %>
+            </a>
           </div>
         </div>
         <div class="dropstart show-sm">

@@ -5,10 +5,6 @@ const userController = require("../controllers/userController");
 
 const passport = require("passport");
 
-// router.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
-
 router.get("/sign-in", userController.signIn);
 router.post(
   "/sign-in",
@@ -22,6 +18,8 @@ router.post("/sign-up", userController.createUser);
 router.get("/sign-out", userController.signOut);
 
 router.get("/profile", passport.checkAuthentication, userController.profile);
+router.post("/profile/update/:id", userController.update);
+router.post("/profile/updateAvatar/:id", userController.updateAvatar);
 router.get("/profile/posts", userController.profile);
 router.get("/profile/friends", userController.profile);
 

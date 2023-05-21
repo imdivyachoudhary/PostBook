@@ -54,26 +54,47 @@
         }
       }
 
-      .delete-post{
+      .delete-post {
         display: flex;
         align-items: center;
         padding: 5px;
-        i{
+        i {
           padding: 2px;
           cursor: pointer;
           font-size: 1.2rem;
         }
       }
-
     }
 
     .post-body {
       background-color: gainsboro;
-      max-height: 400px;
-      // width: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      .post-item {
+        text-align: start;
+        padding-left: 10px;
+        // width: 100px;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        .content {
+          max-height: 60px;
+          overflow: hidden;
+        }
+        .read-more {
+          // margin-top: 5px;
+          padding: 2px 4px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: smaller;
+          color: gray;
+        }
+      }
+      post-image {
+        max-height: 400px;
+        // width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       img {
         max-height: 100%;
         max-width: 100%;

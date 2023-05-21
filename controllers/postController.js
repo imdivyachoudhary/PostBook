@@ -1,4 +1,25 @@
-// const User = require("../models/user");
+const Post = require("../models/post");
+
+module.exports.getPosts = (req,res) => {
+  
+}
+
+module.exports.createPost = async (req, res) => {
+  Post.uploadedPost(req, res, function (err) {
+    if (err) {
+      console.log("Multer Error : ", err);
+    }
+    if (req.file) {
+      console.log(req.file);
+      // if (user.avatar) {
+      //   fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+      // }
+      // user.avatar = User.avatarPath + "/" + req.file.filename;
+      // user.save();
+    }
+  });
+  return res.end("done");
+}
 
 module.exports.reactions = (req, res) => {
   //   console.log(req);
