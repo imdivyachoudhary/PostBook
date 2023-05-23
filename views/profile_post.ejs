@@ -1,25 +1,25 @@
 <link rel="stylesheet" href="<%= assetPath('/css/post.css') %>" />
 <div class="posts">
-  <% for( let i = 0; i < 5; i++ ) { %>
-  <div class="post">
+  <% posts.forEach(post => { %>
+  <div class="post" id="post-<%= post.id %>">
     <div class="post-header">
       <div class="display_pic">
         <!-- <i class="fas fa-user-circle"></i> -->
         <% if (user.avatar) { %>
           <img src="<%= user.avatar %>" alt="" />
         <% } else { %>
-        <img src="<%= assetPath('/images/default_user.jpeg') %>" alt="" />
+        <img src="<%= post.content %>" alt="" />
         <% } %>
       </div>
       <div class="display_name_time">
-        <div class="display_name">Divya Choudhary</div>
+        <div class="display_name"><%= user.name %></div>
         <div class="display_time">
-          <div>April 21, 2021</div>
+          <div><%= post.createdAt.toLocaleDateString() %></div>
           <!-- <div>21:30</div> -->
         </div>
       </div>
       <div class="delete-post">
-        <i class="fa-solid fa-trash-can"></i>
+        <i class="fa-solid fa-trash-can" data-link = "/post/delete/<%= post.id %>" onclick="deletePost(this, event)"></i>
       </div>
     </div>
     <div class="post-body">
@@ -28,7 +28,7 @@
         <div class="read-more">...Read more</div>
       </div> -->
       <div class="post-image">
-        <img src="<%= assetPath('/images/home-page.jpg') %>" alt="" />
+        <img src="<%= post.content %>" alt="" />
       </div>
     </div>
     <div class="post-footer">
@@ -41,7 +41,7 @@
           class="count"
           data-bs-toggle="modal"
           data-bs-target="#modalReactions"
-          data-id="<%= i %>"
+          data-id="<%= post.id %>"
         >
           298
         </div>
@@ -50,7 +50,7 @@
         class="comments"
         data-bs-toggle="modal"
         data-bs-target="#modalComments"
-        data-id="<%= i %>"
+        data-id="<%= post.id %>"
       >
         <div class="icon">
           <i class="fas fa-comment-dots"></i>
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <% } %>
+  <% }) %>
 </div>
 
 <div

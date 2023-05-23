@@ -1,3 +1,14 @@
+$(document).ready(function () {
+  $.ajax({
+    url: "/post",
+    type: "get",
+    success: function (response) {
+      // Add response in Modal body
+      $("#allPosts").html(response);
+    },
+  });
+});
+
 {
   var url = window.location.href.split("/");
   var id = url[url.length - 1];

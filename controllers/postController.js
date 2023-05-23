@@ -1,25 +1,76 @@
 const Post = require("../models/post");
+const User = require("../models/user");
+const fs = require("fs");
+const path = require("path");
 
-module.exports.getPosts = (req,res) => {
-  
-}
+module.exports.getPosts = async (req, res) => {
+  try {
+    let posts = await Post.find({ user: req.user.id }).sort("-createdAt");
+
+    return res.render("profile_post", { layout: false, posts: posts });
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
+};
 
 module.exports.createPost = async (req, res) => {
-  Post.uploadedPost(req, res, function (err) {
+  await Post.uploadedPost(req, res, function (err) {
     if (err) {
       console.log("Multer Error : ", err);
+      return res.redirect("back");
     }
     if (req.file) {
-      console.log(req.file);
-      // if (user.avatar) {
-      //   fs.unlinkSync(path.join(__dirname, "..", user.avatar));
-      // }
-      // user.avatar = User.avatarPath + "/" + req.file.filename;
-      // user.save();
+      // console.log(req.file);
+      var createPost = (async function () {
+        let postPath = Post.postPath + "/" + req.file.filename;
+        try {
+          let post = await Post.create({
+            content: postPath,
+            user: req.user.id,
+          });
+
+          let user = await User.findById(req.user.id);
+
+          if (req.xhr) {
+            return res.status(200).json({
+              data: {
+                post: post,
+                user: user,
+              },
+              message: "Post created",
+            });
+          }
+        } catch (err) {
+          console.log(err);
+          return res.redirect("back");
+        }
+      })();
     }
   });
-  return res.end("done");
-}
+};
+
+module.exports.deletePost = async (req, res) => {
+  // console.log(req.params.id);
+  try {
+    let post = await Post.findById(req.params.id);
+    if (post){ 
+      await fs.unlinkSync(path.join(__dirname, "..", post.content));
+      await post.remove();
+    }
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          post_id: req.params.id,
+        },
+        message: "Post deleted",
+      });
+    }
+  } catch (error) {
+    // console.log(error);
+    return error;
+  }
+};
 
 module.exports.reactions = (req, res) => {
   //   console.log(req);

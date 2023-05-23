@@ -24,6 +24,7 @@ router.get("/profile/posts", userController.profile);
 router.get("/profile/friends", userController.profile);
 
 router.get("/home", userController.home);
+router.get("/home/posts", userController.getPosts);
 router.get("/home/chats", userController.home);
 router.get("/home/more_people", userController.home);
 

@@ -1,5 +1,6 @@
 const { render } = require("ejs");
 const User = require("../models/user");
+const Post = require("../models/post");
 const fs = require("fs");
 const path = require("path");
 
@@ -130,6 +131,17 @@ module.exports.home = (req, res) => {
   return res.render("home", {
     title: "Home",
   });
+};
+
+module.exports.getPosts = async (req, res) => {
+  try {
+    let posts = await Post.find().sort("-createdAt").populate('user');
+
+    return res.render("home_post", { layout: false, posts: posts });
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
 };
 
 module.exports.more_people = (req, res) => {

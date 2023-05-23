@@ -11,6 +11,15 @@
 
 $(document).ready(function () {
   $.ajax({
+    url: "/user/home/posts",
+    type: "get",
+    success: function (response) {
+      // Add response in Modal body
+      $("#allPosts").html(response);
+    },
+  });
+
+  $.ajax({
     url: "/user/" + "more_people",
     get: "get",
     // data: { type: type },
