@@ -112,3 +112,9 @@
       font-size: 1.3rem; }
     .posts .post .post-header .display_name_time .display_time {
       font-size: 0.7rem; } }
+
+#comment-form {
+  width: 100%;
+  display: flex; }
+  #comment-form #input-comment {
+    margin-right: 5px; }

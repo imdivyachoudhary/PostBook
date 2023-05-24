@@ -168,3 +168,11 @@
     }
   }
 }
+
+#comment-form{
+  width: 100%;
+  display: flex;
+  #input-comment{
+    margin-right: 5px;
+  }
+}

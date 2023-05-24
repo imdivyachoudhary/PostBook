@@ -1,13 +1,13 @@
 $(document).ready(function () {
   $(".likes").click(function () {
-    $(".modal-body").html("");
+    $("modalReactions.modal-body").html("");
     // $(".modal-body").html();
     var postid = $(this).attr("data-id");
     // console.log(postid);
     // $(".modal-header h1").html("Reactions");
 
     $.ajax({
-      url: "/post/reactions",
+      url: "/post/reaction",
       type: "post",
       data: { postid: postid },
       success: function (response) {
@@ -16,26 +16,44 @@ $(document).ready(function () {
       },
     });
   });
-
-  $(".comments").click(function () {
-    $(".modal-body").html("");
-    var postid = $(this).attr("data-id");
-    // console.log(postid);
-    // $(".modal-header h1").html("Comments");
-
-    $.ajax({
-      url: "/post/comments",
-      type: "post",
-      data: { postid: postid },
-      success: function (response) {
-        // Add response in Modal body
-        $("#modalComments .modal-body").html(response);
-      },
-    });
-  });
 });
 
-function submitForm(ele, event) {
+function openComments(ele) {
+  $("#modalComments .modal-body").html("");
+  var post_id = $(ele).attr("data-id");
+  // console.log(postid);
+  $("#modalComments #comment-form #post-id").attr("value", post_id);
+
+  $.ajax({
+    url: "/post/comment",
+    type: "post",
+    data: { post_id: post_id },
+    success: function (response) {
+      // Add response in Modal body
+      $("#modalComments .modal-body").html(response);
+    },
+  });
+}
+
+function deletePost(ele, event) {
+  event.preventDefault();
+  // console.log($(event.target).attr("data-link"));
+
+  $.ajax({
+    url: $(event.target).attr("data-link"),
+    type: "delete",
+    success: function (response) {
+      // console.log(response);
+      // console.log(`#post-${response.data.post_id}`);
+      $(`#post-${response.data.post_id}`).remove();
+    },
+    error: function (err) {
+      console.log(err);
+    },
+  });
+}
+
+function submitPostForm(ele, event) {
   event.preventDefault();
   let form = $(ele);
   // let formData = form.serialize();
@@ -57,28 +75,9 @@ function submitForm(ele, event) {
       // $(responseElementId).html(response);
     },
     error: function (err) {
-      // $("#modalUpdateAvatar").modal("hide");
+      $(".modal").modal("hide");
       console.log(err);
     },
-  });
-}
-
-// 
-function deletePost (ele, event) {
-  event.preventDefault();
-  // console.log($(event.target).attr("data-link"));
-
-  $.ajax({
-    url: $(event.target).attr("data-link"),
-    type: "delete",
-    success: function(response){
-      // console.log(response);
-      // console.log(`#post-${response.data.post_id}`);
-      $(`#post-${response.data.post_id}`).remove();
-    },
-    error: function(err){
-      console.log(err);
-    }
   });
 }
 
@@ -91,6 +90,7 @@ function createPostDom(post, user) {
   }
   let postDate = new Date(post.createdAt);
   let d = postDate.toLocaleDateString();
+  let t = postDate.getHours() + ":" + postDate.getMinutes();
   return (dom = `<div class="post" id="post-${post._id}">
               <div class="post-header">
                 <div class="display_pic">
@@ -99,8 +99,7 @@ function createPostDom(post, user) {
                 <div class="display_name_time">
                   <div class="display_name">${user.name}</div>
                   <div class="display_time">
-                    <div>${d}</div>
-                    <!-- <div>21:30</div> -->
+                    <div>${d}, ${t}</div>
                   </div>
                 </div>
                 <div class="delete-post">
@@ -108,10 +107,6 @@ function createPostDom(post, user) {
                 </div>
               </div>
               <div class="post-body">
-                <!-- <div class="post-item">
-                  <div class="content">Hello world!</div>
-                  <div class="read-more">...Read more</div>
-                </div> -->
                 <div class="post-image">
                   <img src="${post.content}" alt="" />
                 </div>
@@ -120,13 +115,12 @@ function createPostDom(post, user) {
                 <div class="likes">
                   <div class="icon">
                     <i class="far fa-heart"></i>
-                    <!-- <i class="fas fa-heart liked"></i> -->
                   </div>
                   <div
                     class="count"
                     data-bs-toggle="modal"
                     data-bs-target="#modalReactions"
-                    data-id="<%= i %>"
+                    data-id="${post._id}"
                   >
                     
                   </div>
@@ -135,7 +129,8 @@ function createPostDom(post, user) {
                   class="comments"
                   data-bs-toggle="modal"
                   data-bs-target="#modalComments"
-                  data-id="<%= i %>"
+                  data-id="${post._id}"
+                  onclick="openComments(this)"
                 >
                   <div class="icon">
                     <i class="fas fa-comment-dots"></i>

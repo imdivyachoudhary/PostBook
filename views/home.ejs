@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<%= assetPath('/css/user_home_page.css') %>" />
+<link rel="stylesheet" href="<%= assetPath('/css/home.css') %>" />
 
 <div id="main-body">
   <div class="flex height-main">
@@ -30,17 +30,22 @@
     </div>
     <div class="col-posts" id="home">
       <div class="flex flex-center-horizontal">
-        <h1>Posts</h1>
-        <div id="allPosts"></div>
+        <div class="heading">
+          <div class="btn btn-success add-post" data-bs-toggle="modal" data-bs-target="#modalAddPost">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+          <h1>Posts</h1>
+        </div>
+        <div class="width-full" id="allPosts"></div>
       </div>
     </div>
     <div class="col-friends" id="chats">
       <div class="flex flex-center-horizontal">
         <h1>Chat-Box</h1>
-        <%- include('friends-list') %>
+        <div class="width-full" id=""><%- include('friends-list') %></div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="<%= assetPath('/js/user_home_page.js') %>"></script>
+<script src="<%= assetPath('/js/home.js') %>"></script>

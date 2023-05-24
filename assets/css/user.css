@@ -28,10 +28,19 @@
       display: flex;
       align-items: center;
       justify-content: center; }
-      #main-body .col-posts .heading i {
-        padding: 2px;
-        font-size: 1.5rem;
-        cursor: pointer; }
+      #main-body .col-posts .heading .add-post {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%; }
+        #main-body .col-posts .heading .add-post i {
+          padding: 2px;
+          font-size: 1.5rem;
+          cursor: pointer; }
+        #main-body .col-posts .heading .add-post i:hover {
+          font-size: 1.8rem; }
   #main-body .col-friends {
     width: 25%;
     padding: 0 10px;
@@ -57,3 +66,6 @@
 
 #modalAddPost .modal-body div {
   padding: 2px; }
+
+.width-full {
+  width: 100%; }

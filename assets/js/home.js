@@ -11,7 +11,7 @@
 
 $(document).ready(function () {
   $.ajax({
-    url: "/user/home/posts",
+    url: "/post/home",
     type: "get",
     success: function (response) {
       // Add response in Modal body

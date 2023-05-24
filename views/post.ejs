@@ -1,26 +1,35 @@
 <link rel="stylesheet" href="<%= assetPath('/css/post.css') %>" />
+
 <div class="posts">
   <% posts.forEach(post => { %>
   <div class="post" id="post-<%= post.id %>">
     <div class="post-header">
       <div class="display_pic">
-        <!-- <i class="fas fa-user-circle"></i> -->
-        <% if (user.avatar) { %>
-          <img src="<%= user.avatar %>" alt="" />
+        <% if (post.user.avatar) { %>
+        <img src="<%= post.user.avatar %>" alt="" />
         <% } else { %>
-        <img src="<%= post.content %>" alt="" />
+        <i class="fas fa-user-circle"></i>
         <% } %>
       </div>
       <div class="display_name_time">
-        <div class="display_name"><%= user.name %></div>
+        <div class="display_name"><%= post.user.name %></div>
         <div class="display_time">
-          <div><%= post.createdAt.toLocaleDateString() %></div>
+          <div>
+            <%= post.createdAt.toLocaleDateString() %>,&nbsp;&nbsp;<%=
+            post.createdAt.getHours() %>:<%= post.createdAt.getMinutes() %>
+          </div>
           <!-- <div>21:30</div> -->
         </div>
       </div>
+      <% if (user.id==post.user.id) { %>
       <div class="delete-post">
-        <i class="fa-solid fa-trash-can" data-link = "/post/delete/<%= post.id %>" onclick="deletePost(this, event)"></i>
+        <i
+          class="fa-solid fa-trash-can"
+          data-link="/post/delete/<%= post.id %>"
+          onclick="deletePost(this, event)"
+        ></i>
       </div>
+      <% } %>
     </div>
     <div class="post-body">
       <!-- <div class="post-item">
@@ -51,11 +60,14 @@
         data-bs-toggle="modal"
         data-bs-target="#modalComments"
         data-id="<%= post.id %>"
+        onclick="openComments(this)"
       >
         <div class="icon">
           <i class="fas fa-comment-dots"></i>
         </div>
-        <div class="count">36</div>
+        <div class="count"><% if (post.comments && post.comments.length > 0) { %>
+          <%= post.comments.length %>
+        <% } %></div>
       </div>
     </div>
   </div>
@@ -111,17 +123,25 @@
       </div>
       <div class="modal-body"></div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button> -->
-        <input
-          type="text"
-          placeholder="Comment..."
-          style="flex-grow: 1"
-          name="input-comment"
-          id="input-comment"
-        />
-        <button class="send-button"><i class="fas fa-share-square"></i></button>
+        <form
+          id="comment-form"
+          action="/post/comment/create"
+          method="post"
+          onsubmit="submitCommentForm(this, event)"
+        >
+        <input type="hidden" id="post-id" name="post_id">
+          <input
+            type="text"
+            placeholder="Comment..."
+            style="flex-grow: 1"
+            name="comment"
+            id="input-comment"
+            required
+          />
+          <button type="submit" class="send-button">
+            <i class="fas fa-share-square"></i>
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -134,7 +154,12 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <form action="/post/create" enctype="multipart/form-data" method="post" onsubmit="submitForm(this, event)">
+  <form
+    action="/post/create"
+    enctype="multipart/form-data"
+    method="post"
+    onsubmit="submitPostForm(this, event)"
+  >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">

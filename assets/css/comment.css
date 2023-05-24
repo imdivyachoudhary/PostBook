@@ -1,5 +1,5 @@
 .comments-list {
-  height: 500px; }
+  max-height: 500px; }
   .comments-list .comment-item {
     padding: 2px;
     font-size: smaller;
@@ -22,7 +22,7 @@
           align-items: center;
           justify-content: center; }
           .comments-list .comment-item .comment-header .comment-user .display_pic i {
-            font-size: 0.8rem; }
+            font-size: 2rem; }
           .comments-list .comment-item .comment-header .comment-user .display_pic img {
             height: 100%;
             width: 100%;

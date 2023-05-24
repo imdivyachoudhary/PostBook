@@ -26,7 +26,7 @@ module.exports.loginUser = (req, res) => {
 
 module.exports.signUp = (req, res) => {
   if (req.isAuthenticated()) {
-    return res.redirect("/user/profile");
+    return res.redirect("/user/dashboard");
   }
   return res.render("sign-up", {
     title: "Sign Up",
@@ -70,9 +70,15 @@ module.exports.signOut = (req, res) => {
   });
 };
 
-module.exports.profile = (req, res) => {
-  return res.render("profile_page", {
+module.exports.user = (req, res) => {
+  return res.render("user", {
     title: "Profile",
+  });
+};
+
+module.exports.profile = (req, res) => {
+  return res.render("profile", {
+    layout: false,
   });
 };
 
@@ -83,10 +89,11 @@ module.exports.update = async (req, res) => {
 
     if (req.body.name) user.name = req.body.name;
     if (req.body.email) user.email = req.body.email;
-    user.save();
+    await user.save();
 
     // return res.render("profile", {
     //   layout: false,
+    //   user: user
     // });
     return res.redirect("back");
   } else {
@@ -131,17 +138,6 @@ module.exports.home = (req, res) => {
   return res.render("home", {
     title: "Home",
   });
-};
-
-module.exports.getPosts = async (req, res) => {
-  try {
-    let posts = await Post.find().sort("-createdAt").populate('user');
-
-    return res.render("home_post", { layout: false, posts: posts });
-  } catch (error) {
-    console.log(error);
-    return "";
-  }
 };
 
 module.exports.more_people = (req, res) => {

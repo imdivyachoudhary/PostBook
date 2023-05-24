@@ -37,14 +37,25 @@
     border-left: solid grey 2px;
     border-right: solid grey 2px;
     padding: 0 10px;
-    .heading{
+    .heading {
       display: flex;
       align-items: center;
       justify-content: center;
-      i{
-        padding: 2px;
-        font-size: 1.5rem;
-        cursor: pointer;
+      .add-post {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        i {
+          padding: 2px;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+        i:hover {
+          font-size: 1.8rem;
+        }
       }
     }
   }
@@ -86,10 +97,14 @@
   width: 0px;
 }
 
-#modalAddPost{
-  .modal-body{
-    div{
+#modalAddPost {
+  .modal-body {
+    div {
       padding: 2px;
     }
   }
+}
+
+.width-full {
+  width: 100%;
 }
