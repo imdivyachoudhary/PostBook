@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const User = require("../models/user");
 const Comment = require("../models/comment");
+const Reaction = require("../models/reaction");
 const fs = require("fs");
 const path = require("path");
 
@@ -8,7 +9,9 @@ module.exports.getUserPosts = async (req, res) => {
   try {
     let posts = await Post.find({ user: req.user.id })
       .sort("-createdAt")
-      .populate("user");
+      .populate("user")
+      .populate("comments")
+      .populate("reactions");
 
     return res.render("post", { layout: false, posts: posts });
   } catch (error) {
@@ -71,11 +74,12 @@ module.exports.deletePost = async (req, res) => {
     if (post && post.user == req.user.id) {
       await fs.unlinkSync(path.join(__dirname, "..", post.content));
       await post.remove();
-      await Comment.deleteMany({post: req.params.id});
+      await Comment.deleteMany({ post: post.id });
+      await Reaction.deleteMany({ reactionable: post.id, onModel: "Post" });
       if (req.xhr) {
         return res.status(200).json({
           data: {
-            post_id: req.params.id,
+            post_id: post.id,
           },
           message: "Post deleted",
         });

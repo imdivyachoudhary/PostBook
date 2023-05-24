@@ -20,6 +20,12 @@ const postSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
+    reactions: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reaction",
+      },
+    ],
   },
   {
     timestamps: true,

@@ -26,8 +26,6 @@
     border-left: solid grey 2px;
     border-right: solid grey 2px;
     padding: 0 10px; }
-    #main-body .col-posts #allPosts {
-      width: 100%; }
     #main-body .col-posts .heading {
       width: 100%;
       display: flex;
@@ -101,3 +99,6 @@
 
 #modalAddPost .modal-body div {
   padding: 2px; }
+
+.width-full {
+  width: 100%; }

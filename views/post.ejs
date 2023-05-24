@@ -42,18 +42,57 @@
     </div>
     <div class="post-footer">
       <div class="likes">
-        <div class="icon">
-          <!-- <i class="far fa-heart"></i> -->
-          <i class="fas fa-heart liked"></i>
+        <div class="icon" data-bs-toggle="collapse" href="#reaction-types-<%= post.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+          <i class="far fa-heart"></i>
+          <!-- <i class="fas fa-heart liked"></i> -->
         </div>
         <div
           class="count"
           data-bs-toggle="modal"
           data-bs-target="#modalReactions"
           data-id="<%= post.id %>"
+          onclick="openReactions(this)"
         >
-          298
+          <% if (post.reactions && post.reactions.length > 0) { %> 
+          <%= post.reactions.length %> 
+          <% } %>
         </div>
+        <div class="collapse multi-collapse reaction-types" id="reaction-types-<%= post.id %>">
+          
+          <div
+            class="reaction-icon"
+            onclick="togglePostReaction(this,'like')"
+            data-id="<%= post.id %>"
+            data-type="like"
+          >
+            <i class="fas fa-heart like"></i>
+          </div>
+          <div
+            class="reaction-icon"
+            onclick="togglePostReaction(this,'laugh')"
+            data-id="<%= post.id %>"
+            data-type="laugh"
+          >
+            <i class="fa-solid fa-face-grin-tears laugh"></i>
+          </div>
+          <div
+            class="reaction-icon"
+            onclick="togglePostReaction(this,'angry')"
+            data-id="<%= post.id %>"
+            data-type="angry"
+          >
+            <i class="fa-solid fa-face-angry angry"></i>
+          </div>
+          <div
+            class="reaction-icon"
+            onclick="togglePostReaction(this,'thumbs-up')"
+            data-id="<%= post.id %>"
+            data-type="thumbs-up"
+          >
+            <i class="fa-solid fa-thumbs-up thumbs-up"></i>
+          </div>
+        
+      </div>
       </div>
       <div
         class="comments"
@@ -65,9 +104,11 @@
         <div class="icon">
           <i class="fas fa-comment-dots"></i>
         </div>
-        <div class="count"><% if (post.comments && post.comments.length > 0) { %>
-          <%= post.comments.length %>
-        <% } %></div>
+        <div class="count">
+          <% if (post.comments && post.comments.length > 0) { %> 
+          <%= post.comments.length %> 
+          <% } %>
+        </div>
       </div>
     </div>
   </div>
@@ -125,11 +166,11 @@
       <div class="modal-footer">
         <form
           id="comment-form"
-          action="/post/comment/create"
+          action="/comment/create"
           method="post"
           onsubmit="submitCommentForm(this, event)"
         >
-        <input type="hidden" id="post-id" name="post_id">
+          <input type="hidden" id="form-post-id" name="post_id" />
           <input
             type="text"
             placeholder="Comment..."

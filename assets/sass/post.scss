@@ -105,6 +105,7 @@
       background-color: gray;
       color: white;
       padding: 2px;
+      height: 40px;
       width: 100%;
       display: flex;
       align-items: center;
@@ -174,5 +175,55 @@
   display: flex;
   #input-comment{
     margin-right: 5px;
+  }
+}
+
+.reaction-types {
+  display: flex;
+  background-color: aliceblue;
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+  top: -50px;
+
+  .reaction-icon {
+    cursor: pointer;
+    padding: 2px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size: 1.5rem;
+    }
+    .like {
+      color: rgba(255, 0, 0, 0.74);
+    }
+    .like:hover {
+      color: rgba(255, 0, 0, 0.507);
+    }
+    .angry {
+      color: #ff6207cc;
+    }
+    .angry:hover {
+      color: #ff62079a;
+    }
+    .laugh {
+      color: #ffc107;
+    }
+    .laugh:hover {
+      color: #ffc107b6;
+    }
+    .thumbs-up {
+      color: blue;
+    }
+    .thumbs-up:hover {
+      color: rgba(0, 0, 255, 0.726);
+    }
+  }
+  .active {
+    background-color: antiquewhite;
+    border-radius: 50%;
   }
 }

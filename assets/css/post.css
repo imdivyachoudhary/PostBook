@@ -75,6 +75,7 @@
       background-color: gray;
       color: white;
       padding: 2px;
+      height: 40px;
       width: 100%;
       display: flex;
       align-items: center;
@@ -118,3 +119,40 @@
   display: flex; }
   #comment-form #input-comment {
     margin-right: 5px; }
+
+.reaction-types {
+  display: flex;
+  background-color: aliceblue;
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+  top: -50px; }
+  .reaction-types .reaction-icon {
+    cursor: pointer;
+    padding: 2px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .reaction-types .reaction-icon i {
+      font-size: 1.5rem; }
+    .reaction-types .reaction-icon .like {
+      color: rgba(255, 0, 0, 0.74); }
+    .reaction-types .reaction-icon .like:hover {
+      color: rgba(255, 0, 0, 0.507); }
+    .reaction-types .reaction-icon .angry {
+      color: #ff6207cc; }
+    .reaction-types .reaction-icon .angry:hover {
+      color: #ff62079a; }
+    .reaction-types .reaction-icon .laugh {
+      color: #ffc107; }
+    .reaction-types .reaction-icon .laugh:hover {
+      color: #ffc107b6; }
+    .reaction-types .reaction-icon .thumbs-up {
+      color: blue; }
+    .reaction-types .reaction-icon .thumbs-up:hover {
+      color: rgba(0, 0, 255, 0.726); }
+  .reaction-types .active {
+    background-color: antiquewhite;
+    border-radius: 50%; }

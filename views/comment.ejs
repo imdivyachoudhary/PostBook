@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<%= assetPath('/css/comment.css') %>" />
 
 <div class="comments-list">
+  <input type="hidden" id="comments-count" value=<%= comments.length %>>
   <% comments.forEach(comment => { %>
 
   <div class="comment-item" id="comment-<%= comment.id %>">
@@ -18,7 +19,7 @@
       <% if (user.id==comment.user.id) { %>
       <div
         class="comment-reply-button"
-        data-link="/post/comment/delete/<%= comment.id %>"
+        data-link="/comment/delete/<%= comment.id %>"
         onclick="deleteComment(this,event)"
       >
         Delete
@@ -26,11 +27,15 @@
       <% } %>
       <!-- <div class="comment-reply-button">Reply</div> -->
       <div class="comment-like-button">
-        <div class="like-icon">
-          <!-- <i class="far fa-heart"></i> -->
-          <i class="fas fa-heart liked"></i>
+        <div class="like-icon" data-id="<%= comment.id %>" onclick="toggleCommentReaction(this,'like')">
+          <i class="far fa-heart"></i>
+          <!-- <i class="fas fa-heart liked"></i> -->
         </div>
-        <div class="like-count">3</div>
+        <div class="like-count">
+          <% if (comment.reactions && comment.reactions.length > 0) { %> 
+          <%= comment.reactions.length %> 
+          <% } %>
+        </div>
       </div>
     </div>
     <div class="comment-body">

@@ -1,17 +1,19 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
 const User = require("../models/user");
+const Reaction = require("../models/reaction");
 
 module.exports.getComments = async (req, res) => {
   try {
     let comments = await Comment.find({ post: req.body.post_id })
       .sort("-createdAt")
-      .populate("user");
+      .populate("user")
+      .populate("reactions");
 
-      return res.render("comment", {
-        layout: false,
-        comments: comments,
-      });
+    return res.render("comment", {
+      layout: false,
+      comments: comments,
+    });
   } catch (error) {
     console.log(error);
     return "";
@@ -62,6 +64,7 @@ module.exports.deleteComment = async (req, res) => {
       await Post.findByIdAndUpdate(post_id, {
         $pull: { comments: req.params.id },
       });
+      await Reaction.deleteMany({ reactionable: comment.id, onModel: "Comment" });
       if (req.xhr) {
         return res.status(200).json({
           data: {

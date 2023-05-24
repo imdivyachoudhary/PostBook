@@ -1,36 +1,89 @@
-$(document).ready(function () {
-  $(".likes").click(function () {
+function openReactions(ele) {
     $("modalReactions.modal-body").html("");
     // $(".modal-body").html();
-    var postid = $(this).attr("data-id");
-    // console.log(postid);
-    // $(".modal-header h1").html("Reactions");
-
+    var post_id = $(this).attr("data-id");
+    // console.log(post_id);
+  
     $.ajax({
       url: "/post/reaction",
       type: "post",
-      data: { postid: postid },
+      data: { post_id: post_id },
       success: function (response) {
         // Add response in Modal body
         $("#modalReactions .modal-body").html(response);
       },
     });
+}
+
+function togglePostReaction(ele, reactionType) {
+  let post_id = $(ele).attr("data-id");
+  $.ajax({
+    url: "/reaction/toggle-reaction",
+    type: "post",
+    data: {
+      type: "Post",
+      id: post_id,
+      reactionType: reactionType,
+    },
+    success: function (response) {
+      //   console.log(response);
+      $(`#reaction-types-${post_id} .reaction-icon`).removeClass("active");
+
+      let reactions_count = parseInt(
+        $(`#post-${post_id} .likes .count`).html()
+      );
+      if (!reactions_count) reactions_count = 0;
+
+      let increaseCount = response.data.increaseCount;
+      if (increaseCount == 0) {
+        $(ele).addClass("active");
+        $(`#post-${post_id} .likes .icon`).html(
+          `<i class="fas fa-heart liked"></i>`
+        );
+      } else if (increaseCount == 1) {
+        $(ele).addClass("active");
+        reactions_count = reactions_count + 1;
+        $(`#post-${post_id} .likes .count`).html(reactions_count);
+        $(`#post-${post_id} .likes .icon`).html(
+          `<i class="fas fa-heart liked"></i>`
+        );
+      } else if (increaseCount == -1) {
+        reactions_count = reactions_count - 1;
+        if (reactions_count)
+          $(`#post-${post_id} .likes .count`).html(reactions_count);
+        else $(`#post-${post_id} .likes .count`).html("");
+        $(`#post-${post_id} .likes .icon`).html(
+          `<i class="far fa-heart"></i>`
+        );
+      }
+    },
+    error: function (err) {
+      // $(".modal").modal("hide");
+      console.log(err);
+    },
   });
-});
+}
 
 function openComments(ele) {
   $("#modalComments .modal-body").html("");
   var post_id = $(ele).attr("data-id");
-  // console.log(postid);
-  $("#modalComments #comment-form #post-id").attr("value", post_id);
+  // console.log(post_id);
+  // return;
+  $("#modalComments #comment-form #form-post-id").attr("value", post_id);
 
   $.ajax({
-    url: "/post/comment",
+    url: "/comment",
     type: "post",
     data: { post_id: post_id },
     success: function (response) {
       // Add response in Modal body
       $("#modalComments .modal-body").html(response);
+
+      let comments_count = $("#comments-count").val();
+      // console.log(comments_count, post_id);
+      if (comments_count)
+        $(`#post-${post_id} .comments .count`).html(comments_count);
+      else $(`#post-${post_id} .comments .count`).html("");
     },
   });
 }
@@ -121,8 +174,8 @@ function createPostDom(post, user) {
                     data-bs-toggle="modal"
                     data-bs-target="#modalReactions"
                     data-id="${post._id}"
-                  >
-                    
+                    onclick="openReactions(this)"
+                  >  
                   </div>
                 </div>
                 <div

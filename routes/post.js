@@ -9,8 +9,6 @@ router.get("/home", postController.getHomePosts);
 router.post("/create", postController.createPost);
 router.delete("/delete/:id", postController.deletePost);
 
-router.use("/comment", require("./comment"));
-
 router.post("/reaction", postController.reactions);
 
 module.exports = router;
