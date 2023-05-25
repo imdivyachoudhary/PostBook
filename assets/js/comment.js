@@ -1,3 +1,12 @@
+$(document).ready(function () {
+  let post_id = $("#modalComments #comment-form #form-post-id").attr("value");
+  let comments_count = $("#comments-count").val();
+  // console.log(comments_count, post_id);
+  if (comments_count)
+    $(`#post-${post_id} .comments .count`).html(comments_count);
+  else $(`#post-${post_id} .comments .count`).html("");
+});
+
 function toggleCommentReaction(ele, reactionType) {
   let comment_id = $(ele).attr("data-id");
   $.ajax({
@@ -84,9 +93,9 @@ function submitCommentForm(ele, event) {
         response.data.user
       );
       $(".comments-list").prepend(commentDom);
-      let post_id = $("#modalComments #comment-form #form-post-id").attr(
-        "value"
-      );
+
+      let post_id = $("#modalComments #comment-form #form-post-id").attr("value");
+      
       $("#comment-form")[0].reset();
       $("#modalComments #comment-form #form-post-id").attr("value", post_id);
 

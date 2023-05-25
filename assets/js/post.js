@@ -1,11 +1,11 @@
 function openReactions(ele) {
     $("modalReactions.modal-body").html("");
     // $(".modal-body").html();
-    var post_id = $(this).attr("data-id");
+    var post_id = $(ele).attr("data-id");
     // console.log(post_id);
   
     $.ajax({
-      url: "/post/reaction",
+      url: "/reaction/post",
       type: "post",
       data: { post_id: post_id },
       success: function (response) {
@@ -78,12 +78,6 @@ function openComments(ele) {
     success: function (response) {
       // Add response in Modal body
       $("#modalComments .modal-body").html(response);
-
-      let comments_count = $("#comments-count").val();
-      // console.log(comments_count, post_id);
-      if (comments_count)
-        $(`#post-${post_id} .comments .count`).html(comments_count);
-      else $(`#post-${post_id} .comments .count`).html("");
     },
   });
 }

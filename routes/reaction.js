@@ -3,7 +3,7 @@ const router = express.Router();
 
 const reactionController = require("../controllers/reactionController");
 
-router.post("/", reactionController.getReactions);
+router.post("/post", reactionController.getPostReactions);
 
 router.post("/toggle-reaction", reactionController.toggleReaction);
 

@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="<%= assetPath('/css/comment.css') %>" />
 
 <div class="comments-list">
-  <input type="hidden" id="comments-count" value=<%= comments.length %>>
-  <% comments.forEach(comment => { %>
-
+  <input type="hidden" id="comments-count" value="<%= comments.length %>" />
+  <% comments.forEach(comment => { %> 
+  <% let user_reaction = checkUserReaction(user.id, comment.reactions); %>
   <div class="comment-item" id="comment-<%= comment.id %>">
     <div class="comment-header">
       <div class="comment-user">
@@ -27,14 +27,20 @@
       <% } %>
       <!-- <div class="comment-reply-button">Reply</div> -->
       <div class="comment-like-button">
-        <div class="like-icon" data-id="<%= comment.id %>" onclick="toggleCommentReaction(this,'like')">
+        <div
+          class="like-icon"
+          data-id="<%= comment.id %>"
+          onclick="toggleCommentReaction(this,'like')"
+        >
+          <% if (user_reaction.length) { %>
+          <i class="fas fa-heart liked"></i>
+          <% } else {%>
           <i class="far fa-heart"></i>
-          <!-- <i class="fas fa-heart liked"></i> -->
+          <% }%>
         </div>
         <div class="like-count">
-          <% if (comment.reactions && comment.reactions.length > 0) { %> 
-          <%= comment.reactions.length %> 
-          <% } %>
+          <% if (comment.reactions && comment.reactions.length > 0) { %> <%=
+          comment.reactions.length %> <% } %>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="<%= assetPath('/css/reaction.css') %>" />
 
+<input type="hidden" id="reaction-post-id" value="<%= post_id %>">
 <div class="reactions">
   <div class="reaction-header">
     <div
@@ -33,64 +34,72 @@
   </div>
 
   <div class="reaction-body" id="like">
-    <div class="reaction-count"><%= like.users.length %></div>
+    <div class="reaction-count"><%= like.length %></div>
     <div class="reaction-list">
-      <% like.users.forEach(u => { %>
+      <% like.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
-          <!-- <i class="fas fa-user-circle"></i> -->
-          <% let dp = assetPath(u.display_pic) %>
-          <img src="<%= dp %>" alt="" />
+          <% if (reaction.user.avatar) { %>
+            <img src="<%= reaction.user.avatar %>" alt="" />
+            <% } else { %>
+            <i class="fas fa-user-circle"></i>
+            <% } %>
         </div>
-        <div class="display_name"><%= u.user_name %></div>
+        <div class="display_name"><%= reaction.user.name %></div>
       </div>
       <% }) %>
     </div>
   </div>
 
   <div class="reaction-body" id="laugh">
-    <div class="reaction-count"><%= laugh.users.length %></div>
+    <div class="reaction-count"><%= laugh.length %></div>
     <div class="reaction-list">
-      <% laugh.users.forEach(u => { %>
+      <% laugh.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
-          <!-- <i class="fas fa-user-circle"></i> -->
-          <% let dp = assetPath(u.display_pic) %>
-          <img src="<%= dp %>" alt="" />
+          <% if (reaction.user.avatar) { %>
+            <img src="<%= reaction.user.avatar %>" alt="" />
+            <% } else { %>
+            <i class="fas fa-user-circle"></i>
+            <% } %>
         </div>
-        <div class="display_name"><%= u.user_name %></div>
+        <div class="display_name"><%= reaction.user.name %></div>
       </div>
       <% }) %>
     </div>
   </div>
 
   <div class="reaction-body" id="angry">
-    <div class="reaction-count"><%= angry.users.length %></div>
+    <div class="reaction-count"><%= angry.length %></div>
     <div class="reaction-list">
-      <% angry.users.forEach(u => { %>
+      <% angry.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
-          <!-- <i class="fas fa-user-circle"></i> -->
-          <% let dp = assetPath(u.display_pic) %>
-          <img src="<%= dp %>" alt="" />
+          <% if (reaction.user.avatar) { %>
+            <img src="<%= reaction.user.avatar %>" alt="" />
+            <% } else { %>
+            <i class="fas fa-user-circle"></i>
+            <% } %>
         </div>
-        <div class="display_name"><%= u.user_name %></div>
+        <div class="display_name"><%= reaction.user.name %></div>
       </div>
       <% }) %>
     </div>
   </div>
 
   <div class="reaction-body" id="thumbs-up">
-    <div class="reaction-count"><%= thumbs_up.users.length %></div>
+    <div class="reaction-count"><%= thumbs_up.length %></div>
     <div class="reaction-list">
-      <% thumbs_up.users.forEach(u => { %>
+      <% thumbs_up.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
-          <!-- <i class="fas fa-user-circle"></i> -->
-          <% let dp = assetPath(u.display_pic) %>
-          <img src="<%= dp %>" alt="" />
+          <% if (reaction.user.avatar) { %>
+            <img src="<%= reaction.user.avatar %>" alt="" />
+            <% } else { %>
+            <i class="fas fa-user-circle"></i>
+            <% } %>
         </div>
-        <div class="display_name"><%= u.user_name %></div>
+        <div class="display_name"><%= reaction.user.name %></div>
       </div>
       <% }) %>
     </div>

@@ -1,6 +1,4 @@
-const { render } = require("ejs");
 const User = require("../models/user");
-const Post = require("../models/post");
 const fs = require("fs");
 const path = require("path");
 

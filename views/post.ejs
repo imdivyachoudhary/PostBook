@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="<%= assetPath('/css/post.css') %>" />
 
 <div class="posts">
-  <% posts.forEach(post => { %>
+  <% posts.forEach(post => { %> 
+  <% let user_reaction = checkUserReaction(user.id, post.reactions); %>
+  <% let activeClass; %>
   <div class="post" id="post-<%= post.id %>">
     <div class="post-header">
       <div class="display_pic">
@@ -42,9 +44,19 @@
     </div>
     <div class="post-footer">
       <div class="likes">
-        <div class="icon" data-bs-toggle="collapse" href="#reaction-types-<%= post.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+        <div
+          class="icon"
+          data-bs-toggle="collapse"
+          href="#reaction-types-<%= post.id %>"
+          role="button"
+          aria-expanded="false"
+          aria-controls="multiCollapseExample1"
+        >
+          <% if (user_reaction.length) { %>
+          <i class="fas fa-heart liked"></i>
+          <% } else {%>
           <i class="far fa-heart"></i>
-          <!-- <i class="fas fa-heart liked"></i> -->
+          <% }%>
         </div>
         <div
           class="count"
@@ -53,46 +65,50 @@
           data-id="<%= post.id %>"
           onclick="openReactions(this)"
         >
-          <% if (post.reactions && post.reactions.length > 0) { %> 
-          <%= post.reactions.length %> 
-          <% } %>
+          <% if (post.reactions && post.reactions.length) { %> <%=
+          post.reactions.length %> <% } %>
         </div>
-        <div class="collapse multi-collapse reaction-types" id="reaction-types-<%= post.id %>">
-          
+        <div
+          class="collapse multi-collapse reaction-types"
+          id="reaction-types-<%= post.id %>"
+        >
+          <% if (user_reaction.length && user_reaction[0].reactionType=='like') { activeClass = "active"; } else { activeClass=""; } %>
           <div
-            class="reaction-icon"
+            class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'like')"
             data-id="<%= post.id %>"
             data-type="like"
           >
             <i class="fas fa-heart like"></i>
           </div>
+          <% if (user_reaction.length && user_reaction[0].reactionType=='laugh') { activeClass = "active"; } else { activeClass=""; } %>
           <div
-            class="reaction-icon"
+            class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'laugh')"
             data-id="<%= post.id %>"
             data-type="laugh"
           >
             <i class="fa-solid fa-face-grin-tears laugh"></i>
           </div>
+          <% if (user_reaction.length && user_reaction[0].reactionType=='angry') { activeClass = "active"; } else { activeClass=""; } %>
           <div
-            class="reaction-icon"
+            class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'angry')"
             data-id="<%= post.id %>"
             data-type="angry"
           >
             <i class="fa-solid fa-face-angry angry"></i>
           </div>
+          <% if (user_reaction.length && user_reaction[0].reactionType=='thumbs-up') { activeClass = "active"; } else { activeClass=""; } %>
           <div
-            class="reaction-icon"
+            class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'thumbs-up')"
             data-id="<%= post.id %>"
             data-type="thumbs-up"
           >
             <i class="fa-solid fa-thumbs-up thumbs-up"></i>
           </div>
-        
-      </div>
+        </div>
       </div>
       <div
         class="comments"
@@ -105,9 +121,8 @@
           <i class="fas fa-comment-dots"></i>
         </div>
         <div class="count">
-          <% if (post.comments && post.comments.length > 0) { %> 
-          <%= post.comments.length %> 
-          <% } %>
+          <% if (post.comments && post.comments.length) { %> <%=
+          post.comments.length %> <% } %>
         </div>
       </div>
     </div>

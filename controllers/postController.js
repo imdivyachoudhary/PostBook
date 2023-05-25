@@ -10,7 +10,6 @@ module.exports.getUserPosts = async (req, res) => {
     let posts = await Post.find({ user: req.user.id })
       .sort("-createdAt")
       .populate("user")
-      .populate("comments")
       .populate("reactions");
 
     return res.render("post", { layout: false, posts: posts });
@@ -22,7 +21,7 @@ module.exports.getUserPosts = async (req, res) => {
 
 module.exports.getHomePosts = async (req, res) => {
   try {
-    let posts = await Post.find().sort("-createdAt").populate("user");
+    let posts = await Post.find().sort("-createdAt").populate("user").populate("reactions");
 
     return res.render("post", { layout: false, posts: posts });
   } catch (error) {

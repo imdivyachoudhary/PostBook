@@ -1,4 +1,4 @@
-const User = require("../models/user");
+
 
 module.exports.home = (req, res) => {
   // return res.render("home", {

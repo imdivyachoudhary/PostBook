@@ -3,11 +3,34 @@ const User = require("../models/user");
 const Comment = require("../models/comment");
 const Reaction = require("../models/reaction");
 
-module.exports.getReactions = async (req, res) => {
+module.exports.getPostReactions = async (req, res) => {
   try {
-    let reactions = await Reaction.find({ user: req.user.id }).populate("user");
+    let like = await Reaction.find({
+      reactionType: "like",
+      reactionable: req.body.post_id,
+      onModel: "Post",
+    }).populate("user");
 
-    return res.render("reaction", { layout: false, reactions: reactions });
+    let laugh = await Reaction.find({
+      reactionType: "laugh",
+      reactionable: req.body.post_id,
+      onModel: "Post",
+    }).populate("user");
+
+    let angry = await Reaction.find({
+      reactionType: "angry",
+      reactionable: req.body.post_id,
+      onModel: "Post",
+    }).populate("user");
+
+    let thumbs_up = await Reaction.find({
+      reactionType: "thumbs-up",
+      reactionable: req.body.post_id,
+      onModel: "Post",
+    }).populate("user");
+
+    // console.log(req.body, like, laugh, angry, thumbs_up);
+    return res.render("reaction", { layout: false, like: like, laugh: laugh, angry: angry, thumbs_up: thumbs_up, post_id: req.body.post_id });
   } catch (error) {
     console.log(error);
     return "";

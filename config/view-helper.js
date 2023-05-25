@@ -4,8 +4,8 @@ const path = require("path");
 
 module.exports = (app) => {
   app.locals.assetPath = function (filePath) {
-    if(env.name=="development"){
-        return filePath
+    if (env.name == "development") {
+      return filePath;
     }
     return (
       "/" +
@@ -15,5 +15,9 @@ module.exports = (app) => {
         )
       )[filePath]
     );
+  };
+
+  app.locals.checkUserReaction = (user_id, reactions) => {
+    return reactions.filter(reaction => reaction.user == user_id);
   };
 };
