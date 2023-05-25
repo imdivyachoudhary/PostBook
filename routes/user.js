@@ -28,8 +28,4 @@ router.get("/home", passport.checkAuthentication, userController.home);
 router.get("/home/chats", passport.checkAuthentication, userController.home);
 router.get("/home/more_people", passport.checkAuthentication, userController.home);
 
-router.get("/more_people", userController.more_people);
-router.get("/received_requests", userController.received_requests);
-router.get("/sent_requests", userController.sent_requests);
-
 module.exports = router;

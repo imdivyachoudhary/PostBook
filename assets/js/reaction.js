@@ -3,10 +3,10 @@ $(document).ready(function () {
   $("#like").show();
 
   let post_id = $("#reaction-post-id").attr("value");
-  let like_count = parseInt($("#like .reaction-count").html());
-  let laugh_count = parseInt($("#laugh .reaction-count").html());
-  let angry_count = parseInt($("#angry .reaction-count").html());
-  let thumbs_up_count = parseInt($("#thumbs-up .reaction-count").html());
+  let like_count = parseInt($("#like .reaction-count").attr("data-count"));
+  let laugh_count = parseInt($("#laugh .reaction-count").attr("data-count"));
+  let angry_count = parseInt($("#angry .reaction-count").attr("data-count"));
+  let thumbs_up_count = parseInt($("#thumbs-up .reaction-count").attr("data-count"));
 
   let total_reaction_count = like_count + laugh_count + angry + thumbs_up_count;
 

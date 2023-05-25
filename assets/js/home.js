@@ -20,7 +20,16 @@ $(document).ready(function () {
   });
 
   $.ajax({
-    url: "/user/" + "more_people",
+    url: "/friendship/friends",
+    type: "get",
+    success: function (response) {
+      // Add response in Modal body
+      $("#friendsList").html(response);
+    },
+  });
+
+  $.ajax({
+    url: "/friendship/" + "more-people",
     get: "get",
     // data: { type: type },
     success: function (response) {
@@ -38,7 +47,7 @@ function showMorePeopleList(ele, type) {
   // let s = "#" + id;
 //   console.log(type);
   $.ajax({
-    url: "/user/" + type,
+    url: "/friendship/" + type,
     get: "get",
     // data: { type: type },
     success: function (response) {

@@ -45,7 +45,25 @@
         background-color: #3b78ad; }
     .friends-list .friend .message-icon {
       cursor: pointer;
-      text-align: end; }
+      text-align: end;
+      display: flex;
+      align-items: center; }
       .friends-list .friend .message-icon i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 5px;
         font-size: 1.5rem;
-        color: #4787bf; }
+        color: #198754; }
+      .friends-list .friend .message-icon i:hover {
+        height: 50px;
+        width: 50px;
+        border: #B3CEE6 solid 2px;
+        border-radius: 50%; }
+      .friends-list .friend .message-icon button {
+        margin: 2px;
+        background-color: #4787bf;
+        font-weight: bold;
+        color: white; }
+      .friends-list .friend .message-icon button:hover {
+        background-color: #3b78ad; }

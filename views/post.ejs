@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="<%= assetPath('/css/post.css') %>" />
 
 <div class="posts">
-  <% posts.forEach(post => { %> 
-  <% let user_reaction = checkUserReaction(user.id, post.reactions); %>
-  <% let activeClass; %>
+  <% posts.forEach(post => { %> <% let user_reaction =
+  checkUserReaction(user.id, post.reactions); %> <% let activeClass; %>
   <div class="post" id="post-<%= post.id %>">
     <div class="post-header">
       <div class="display_pic">
@@ -72,7 +71,8 @@
           class="collapse multi-collapse reaction-types"
           id="reaction-types-<%= post.id %>"
         >
-          <% if (user_reaction.length && user_reaction[0].reactionType=='like') { activeClass = "active"; } else { activeClass=""; } %>
+          <% if (user_reaction.length && user_reaction[0].reactionType=='like')
+          { activeClass = "active"; } else { activeClass=""; } %>
           <div
             class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'like')"
@@ -81,7 +81,8 @@
           >
             <i class="fas fa-heart like"></i>
           </div>
-          <% if (user_reaction.length && user_reaction[0].reactionType=='laugh') { activeClass = "active"; } else { activeClass=""; } %>
+          <% if (user_reaction.length && user_reaction[0].reactionType=='laugh')
+          { activeClass = "active"; } else { activeClass=""; } %>
           <div
             class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'laugh')"
@@ -90,7 +91,8 @@
           >
             <i class="fa-solid fa-face-grin-tears laugh"></i>
           </div>
-          <% if (user_reaction.length && user_reaction[0].reactionType=='angry') { activeClass = "active"; } else { activeClass=""; } %>
+          <% if (user_reaction.length && user_reaction[0].reactionType=='angry')
+          { activeClass = "active"; } else { activeClass=""; } %>
           <div
             class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'angry')"
@@ -99,7 +101,9 @@
           >
             <i class="fa-solid fa-face-angry angry"></i>
           </div>
-          <% if (user_reaction.length && user_reaction[0].reactionType=='thumbs-up') { activeClass = "active"; } else { activeClass=""; } %>
+          <% if (user_reaction.length &&
+          user_reaction[0].reactionType=='thumbs-up') { activeClass = "active";
+          } else { activeClass=""; } %>
           <div
             class="reaction-icon <%= activeClass %>"
             onclick="togglePostReaction(this,'thumbs-up')"
@@ -127,7 +131,9 @@
       </div>
     </div>
   </div>
-  <% }) %>
+  <% }) %> <% if (!posts.length) { %>
+  <p class="show-failure-message">Nothing To Show!!!</p>
+  <% } %>
 </div>
 
 <div

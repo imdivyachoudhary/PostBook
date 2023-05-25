@@ -18,6 +18,6 @@ module.exports = (app) => {
   };
 
   app.locals.checkUserReaction = (user_id, reactions) => {
-    return reactions.filter(reaction => reaction.user == user_id);
+    return reactions.filter((reaction) => reaction.user == user_id);
   };
 };

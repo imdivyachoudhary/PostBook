@@ -137,30 +137,3 @@ module.exports.home = (req, res) => {
     title: "Home",
   });
 };
-
-module.exports.more_people = (req, res) => {
-  return res.render("friends-list", {
-    layout: false,
-    add_friend: true,
-    received_request: false,
-    sent_request: false,
-  });
-};
-
-module.exports.received_requests = (req, res) => {
-  return res.render("friends-list", {
-    layout: false,
-    add_friend: false,
-    received_request: true,
-    sent_request: false,
-  });
-};
-
-module.exports.sent_requests = (req, res) => {
-  return res.render("friends-list", {
-    layout: false,
-    add_friend: false,
-    received_request: false,
-    sent_request: true,
-  });
-};

@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="<%= assetPath('/css/friendship.css') %>" />
+<div class="friends-list">
+  <% friends.forEach(friends => { %>
+
+  <div class="friend">
+    <div class="display_pic">
+      <% if (friend.avatar) { %>
+      <img src="<%= friend.avatar %>" alt="" />
+      <% } else { %>
+      <i class="fas fa-user-circle"></i>
+      <% } %>
+    </div>
+
+    <div class="display_name"><%= friend.name %></div>
+
+    <div class="add-friend-icon">
+      <button
+        class="btn btn-sm"
+        data-id="<%= friend.id %>"
+        onclick="acceptRequest(this)"
+      >
+        Accept
+      </button>
+      <button
+        class="btn btn-sm"
+        data-id="<%= friend.id %>"
+        onclick="declineRequest(this)"
+      >
+        Declice
+      </button>
+    </div>
+  </div>
+
+  <% }) %> <% if (!friends.length) { %>
+  <p class="show-failure-message">Nothing To Show!!!</p>
+  <% } %>
+</div>
+
+<script src="<%= assetPath('/js/received-requests.js') %>"></script>

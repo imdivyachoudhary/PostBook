@@ -2,8 +2,8 @@
 
 <div class="comments-list">
   <input type="hidden" id="comments-count" value="<%= comments.length %>" />
-  <% comments.forEach(comment => { %> 
-  <% let user_reaction = checkUserReaction(user.id, comment.reactions); %>
+  <% comments.forEach(comment => { %> <% let user_reaction =
+  checkUserReaction(user.id, comment.reactions); %>
   <div class="comment-item" id="comment-<%= comment.id %>">
     <div class="comment-header">
       <div class="comment-user">
@@ -50,7 +50,9 @@
     </div>
   </div>
 
-  <% }) %>
+  <% }) %> <% if (!comments.length) { %>
+  <p class="show-failure-message">Nothing To Show!!!</p>
+  <% } %>
 </div>
 
 <script src="<%= assetPath('/js/comment.js') %>"></script>

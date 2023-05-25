@@ -1,6 +1,7 @@
 {
   showProfile();
   showPosts();
+  showFriends();
 
   var url = window.location.href.split("/");
   var id = url[url.length - 1];
@@ -35,6 +36,17 @@ function showPosts() {
     success: function (response) {
       // Add response in Modal body
       $("#allPosts").html(response);
+    },
+  });
+}
+
+function showFriends() {
+  $.ajax({
+    url: "/friendship/friends",
+    type: "get",
+    success: function (response) {
+      // Add response in Modal body
+      $("#friendsList").html(response);
     },
   });
 }

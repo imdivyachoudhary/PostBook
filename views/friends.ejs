@@ -1,36 +1,41 @@
-<link rel="stylesheet" href="<%= assetPath('/css/friends-list.css') %>" />
+<link rel="stylesheet" href="<%= assetPath('/css/friendship.css') %>" />
 <div class="friends-list">
-  <% for( let i = 0; i < 50; i++ ) { %>
+  <% friends.forEach(friends => { %>
+
   <div class="friend">
     <div class="display_pic">
-      <!-- <i class="fas fa-user-circle"></i> -->
-      <img src="<%= assetPath('/images/home-page.jpg') %>" alt="" />
+      <% if (friend.avatar) { %>
+      <img src="<%= friend.avatar %>" alt="" />
+      <% } else { %>
+      <i class="fas fa-user-circle"></i>
+      <% } %>
     </div>
-    <div class="display_name">Divya Choudhary</div>
-    <% if (locals.add_friend) { %>
-    <div class="add-friend-icon">
-      <button class="btn btn-sm">Add Friend</button>
-    </div>
-    <% } else if (locals.received_request) { %>
-    <div class="add-friend-icon">
-      <button class="btn btn-sm">Accept</button>
-    </div>
-    <% } else if (locals.sent_request) { %>
-    <div class="add-friend-icon">
-      <button class="btn btn-sm">Unsend</button>
-    </div>
-    <% } else {%>
+
+    <div class="display_name"><%= friend.name %></div>
+
     <div
       class="message-icon"
       data-bs-toggle="modal"
       data-bs-target="#modalChatbox"
-      data-id="<%= i %>"
+      data-id="<%= friend.id %>"
+      onclick="openChatBox(this)"
     >
       <i class="fa-solid fa-message"></i>
-      <!-- <i class="fa-solid fa-circle-plus"></i> -->
     </div>
-    <% } %>
+
+    <div class="add-friend-icon">
+      <button
+        class="btn btn-sm"
+        data-id="<%= friend.id %>"
+        onclick="unfriend(this)"
+      >
+        Unfriend
+      </button>
+    </div>
   </div>
+
+  <% }) %> <% if (!friends.length) { %>
+  <p class="show-failure-message">Nothing To Show!!!</p>
   <% } %>
 </div>
 
@@ -71,4 +76,4 @@
 
 <!-- <div class="chatbox" id="chatbox"></div> -->
 
-<script src="<%= assetPath('/js/friends-list.js') %>"></script>
+<script src="<%= assetPath('/js/friends.js') %>"></script>

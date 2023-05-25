@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<%= assetPath('/css/reaction.css') %>" />
 
-<input type="hidden" id="reaction-post-id" value="<%= post_id %>">
+<input type="hidden" id="reaction-post-id" value="<%= post_id %>" />
 <div class="reactions">
   <div class="reaction-header">
     <div
@@ -34,74 +34,90 @@
   </div>
 
   <div class="reaction-body" id="like">
-    <div class="reaction-count"><%= like.length %></div>
+    <div class="reaction-count" data-count="<%= like.length %>">
+      <% if (like.length) { %><%= like.length %><% } %>
+    </div>
     <div class="reaction-list">
       <% like.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
           <% if (reaction.user.avatar) { %>
-            <img src="<%= reaction.user.avatar %>" alt="" />
-            <% } else { %>
-            <i class="fas fa-user-circle"></i>
-            <% } %>
+          <img src="<%= reaction.user.avatar %>" alt="" />
+          <% } else { %>
+          <i class="fas fa-user-circle"></i>
+          <% } %>
         </div>
         <div class="display_name"><%= reaction.user.name %></div>
       </div>
-      <% }) %>
+      <% }) %> <% if (!like.length) { %>
+      <p class="show-failure-message">Nothing To Show!!!</p>
+      <% } %>
     </div>
   </div>
 
   <div class="reaction-body" id="laugh">
-    <div class="reaction-count"><%= laugh.length %></div>
+    <div class="reaction-count" data-count="<%= laugh.length %>">
+      <% if (laugh.length) { %><%= laugh.length %><% } %>
+    </div>
     <div class="reaction-list">
       <% laugh.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
           <% if (reaction.user.avatar) { %>
-            <img src="<%= reaction.user.avatar %>" alt="" />
-            <% } else { %>
-            <i class="fas fa-user-circle"></i>
-            <% } %>
+          <img src="<%= reaction.user.avatar %>" alt="" />
+          <% } else { %>
+          <i class="fas fa-user-circle"></i>
+          <% } %>
         </div>
         <div class="display_name"><%= reaction.user.name %></div>
       </div>
-      <% }) %>
+      <% }) %> <% if (!laugh.length) { %>
+      <p class="show-failure-message">Nothing To Show!!!</p>
+      <% } %>
     </div>
   </div>
 
   <div class="reaction-body" id="angry">
-    <div class="reaction-count"><%= angry.length %></div>
+    <div class="reaction-count" data-count="<%= angry.length %>">
+      <% if (angry.length) { %><%= angry.length %><% } %>
+    </div>
     <div class="reaction-list">
       <% angry.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
           <% if (reaction.user.avatar) { %>
-            <img src="<%= reaction.user.avatar %>" alt="" />
-            <% } else { %>
-            <i class="fas fa-user-circle"></i>
-            <% } %>
+          <img src="<%= reaction.user.avatar %>" alt="" />
+          <% } else { %>
+          <i class="fas fa-user-circle"></i>
+          <% } %>
         </div>
         <div class="display_name"><%= reaction.user.name %></div>
       </div>
-      <% }) %>
+      <% }) %> <% if (!angry.length) { %>
+      <p class="show-failure-message">Nothing To Show!!!</p>
+      <% } %>
     </div>
   </div>
 
   <div class="reaction-body" id="thumbs-up">
-    <div class="reaction-count"><%= thumbs_up.length %></div>
+    <div class="reaction-count" data-count="<%= thumbs_up.length %>">
+      <% if (thumbs_up.length) { %><%= thumbs_up.length %><% } %>
+    </div>
     <div class="reaction-list">
       <% thumbs_up.forEach(reaction => { %>
       <div class="reaction-item">
         <div class="display_pic">
           <% if (reaction.user.avatar) { %>
-            <img src="<%= reaction.user.avatar %>" alt="" />
-            <% } else { %>
-            <i class="fas fa-user-circle"></i>
-            <% } %>
+          <img src="<%= reaction.user.avatar %>" alt="" />
+          <% } else { %>
+          <i class="fas fa-user-circle"></i>
+          <% } %>
         </div>
         <div class="display_name"><%= reaction.user.name %></div>
       </div>
-      <% }) %>
+      <% }) %> <% if (!thumbs_up.length) { %>
+      <p class="show-failure-message">Nothing To Show!!!</p>
+      <% } %>
     </div>
   </div>
 </div>
