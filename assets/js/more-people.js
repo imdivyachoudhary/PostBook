@@ -1,3 +1,8 @@
+$(document).ready(function () {
+  total_friends = parseInt($("#more-people-list").attr("data-count"));
+  if (!total_friends) $("#more-people-list p.show-failure-message").show();
+});
+
 function sendRequest(ele) {
   var friend_id = $(ele).attr("data-id");
   $.ajax({

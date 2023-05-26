@@ -1,3 +1,8 @@
+$(document).ready(function () {
+  let total_posts = parseInt($(".posts").attr("data-count"));
+  if (!total_posts) $(".posts p.show-failure-message").show();
+});
+
 function openReactions(ele) {
   $("modalReactions.modal-body").html("");
   // $(".modal-body").html();
@@ -98,9 +103,8 @@ function deletePost(ele, event) {
       $(`#post-${response.data.post_id}`).remove();
 
       let total_posts = parseInt($(".posts").attr("data-count")) - 1;
-      $(".posts").attr("data-count",total_posts);
-      if(!total_posts)
-        $(".posts p.show-failure-message").show();
+      $(".posts").attr("data-count", total_posts);
+      if (!total_posts) $(".posts p.show-failure-message").show();
     },
     error: function (err) {
       console.log(err);
@@ -127,11 +131,9 @@ function submitPostForm(ele, event) {
       let postDom = createPostDom(response.data.post, response.data.user);
       $(".posts").prepend(postDom);
 
-      let total_posts = parseInt($(".posts").attr("data-count")) + 1
-      $(".posts").attr("data-count",total_posts);
-      if(total_posts)
-        $(".posts p.show-failure-message").hide();
-
+      let total_posts = parseInt($(".posts").attr("data-count")) + 1;
+      $(".posts").attr("data-count", total_posts);
+      if (total_posts) $(".posts p.show-failure-message").hide();
     },
     error: function (err) {
       $(".modal").modal("hide");

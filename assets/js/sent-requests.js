@@ -1,3 +1,8 @@
+$(document).ready(function () {
+  total_friends = parseInt($("#sent-request-list").attr("data-count"));
+  if (!total_friends) $("#sent-request-list p.show-failure-message").show();
+});
+
 function unsendRequest(ele) {
   var friend_id = $(ele).attr("data-id");
   $.ajax({
@@ -8,6 +13,7 @@ function unsendRequest(ele) {
       $(`#sent-requests-list #friend-${friend_id}`).remove();
       let total_friends = parseInt($("#sent-requests-list").attr("data-count")) - 1;
       $("#sent-requests-list").attr("data-count", total_friends);
+
       if (!total_friends)
         $("#sent-requests-list p.show-failure-message").show();
 

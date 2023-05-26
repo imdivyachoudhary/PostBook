@@ -1,10 +1,13 @@
 $(document).ready(function () {
   let post_id = $("#modalComments #comment-form #form-post-id").attr("value");
-  let comments_count = $("#comments-count").val();
+  let comments_count = parseInt($("#comments-count").val());
   // console.log(comments_count, post_id);
   if (comments_count)
     $(`#post-${post_id} .comments .count`).html(comments_count);
-  else $(`#post-${post_id} .comments .count`).html("");
+  else {
+    $(`#post-${post_id} .comments .count`).html("");
+    $(".comments-list p.show-failure-message").show();
+  }
 });
 
 function toggleCommentReaction(ele, reactionType) {

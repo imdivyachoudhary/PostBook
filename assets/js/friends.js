@@ -1,3 +1,8 @@
+$(document).ready(function () {
+  total_friends = parseInt($("#friends-list").attr("data-count"));
+  if (!total_friends) $("#friends-list p.show-failure-message").show();
+});
+
 function openChatBox(ele) {
   $("#modalChatbox .modal-body").html("");
   var friend_id = $(ele).attr("data-id");
@@ -32,8 +37,7 @@ function unfriend(ele) {
       $(`#more-people-list`).prepend(friendDom);
       total_friends = parseInt($("#more-people-list").attr("data-count")) + 1;
       $("#more-people-list").attr("data-count", total_friends);
-      if (total_friends)
-        $("#more-people-list p.show-failure-message").hide();
+      if (total_friends) $("#more-people-list p.show-failure-message").hide();
     },
     error: function (err) {
       console.log(err);
