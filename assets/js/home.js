@@ -10,12 +10,55 @@
   }
 
 $(document).ready(function () {
+
+  $(".people-list").hide();
+  $(`#morePeople`).show();
+
+  $.ajax({
+    url: "/friendship/more-people",
+    get: "get",
+    // data: { type: type },
+    success: function (response) {
+    $("#morePeople").html(response);
+    },
+    error: function (err) {
+      console.log(err);
+    },
+  });
+
+  $.ajax({
+    url: "/friendship/received-requests",
+    get: "get",
+    // data: { type: type },
+    success: function (response) {
+    $("#receivedRequests").html(response);
+    },
+    error: function (err) {
+      console.log(err);
+    },
+  });
+
+  $.ajax({
+    url: "/friendship/sent-requests",
+    get: "get",
+    // data: { type: type },
+    success: function (response) {
+    $("#sentRequests").html(response);
+    },
+    error: function (err) {
+      console.log(err);
+    },
+  });
+
   $.ajax({
     url: "/post/home",
     type: "get",
     success: function (response) {
       // Add response in Modal body
       $("#allPosts").html(response);
+    },
+    error: function (err) {
+      console.log(err);
     },
   });
 
@@ -26,33 +69,21 @@ $(document).ready(function () {
       // Add response in Modal body
       $("#friendsList").html(response);
     },
-  });
-
-  $.ajax({
-    url: "/friendship/" + "more-people",
-    get: "get",
-    // data: { type: type },
-    success: function (response) {
-      // Add response in Modal body
-    //   $(".col-more_friends .center").append(response);
-    $("#morepeople").html(response);
+    error: function (err) {
+      console.log(err);
     },
   });
+
 });
 
-function showMorePeopleList(ele, type) {
-  // console.log($(ele).attr("data-target"));
+function showMorePeopleList(ele, targetElementId) {
+
+  $(".people-list").hide();
+  $(`#${targetElementId}`).show();
+  
   $(".morepeople-icon").removeClass("active");
   $(ele).addClass("active");
-  // let s = "#" + id;
-//   console.log(type);
-  $.ajax({
-    url: "/friendship/" + type,
-    get: "get",
-    // data: { type: type },
-    success: function (response) {
-      // Add response in Modal body
-      $("#morepeople").html(response);
-    },
-  });
+
+  $
+  
 }

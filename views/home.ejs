@@ -8,30 +8,36 @@
         <div class="morepeople-header">
           <div
             class="morepeople-icon active"
-            onclick="showMorePeopleList(this,'more-people')"
+            onclick="showMorePeopleList(this,'morePeople')"
           >
             Add Friends
           </div>
           <div
             class="morepeople-icon border-left-right"
-            onclick="showMorePeopleList(this,'received-requests')"
+            onclick="showMorePeopleList(this,'receivedRequests')"
           >
             Received Requests
           </div>
           <div
             class="morepeople-icon"
-            onclick="showMorePeopleList(this,'sent-requests')"
+            onclick="showMorePeopleList(this,'sentRequests')"
           >
             Sent Requests
           </div>
         </div>
-        <div id="morepeople"></div>
+        <div class="people-list" id="morePeople"></div>
+        <div class="people-list" id="receivedRequests"></div>
+        <div class="people-list" id="sentRequests"></div>
       </div>
     </div>
     <div class="col-posts" id="home">
       <div class="flex flex-center-horizontal">
         <div class="heading">
-          <div class="btn btn-success add-post" data-bs-toggle="modal" data-bs-target="#modalAddPost">
+          <div
+            class="btn btn-success add-post"
+            data-bs-toggle="modal"
+            data-bs-target="#modalAddPost"
+          >
             <i class="fa-solid fa-plus"></i>
           </div>
           <h1>Posts</h1>

@@ -23,8 +23,29 @@ module.exports.friends = async (req, res) => {
   }
 };
 
-module.exports.unfriend = (req, res) => {
-  return;
+module.exports.unfriend = async (req, res) => {
+  try {
+    await Friendship.deleteOne({
+      friendshipStatus: "confirm",
+      $or: [{ from_user: req.user.id,to_user: req.body.friend_id }, { from_user: req.body.friend_id,to_user: req.user.id }],
+    });
+
+    let friend = await User.findById(req.body.friend_id);
+
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          friend: friend,
+        },
+        message: "Friend Request Sent",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Friend Request Could not be Send",
+    });
+  }
 };
 
 module.exports.morePeople = async (req, res) => {
@@ -51,8 +72,41 @@ module.exports.morePeople = async (req, res) => {
   }
 };
 
-module.exports.sendRequest = (req, res) => {
-  return;
+module.exports.sendRequest = async (req, res) => {
+  try {
+
+    let friendship = await Friendship.findOne({
+      to_user: req.user.id,
+      from_user: req.body.friend_id,
+      friendshipStatus: "pending",
+    })
+    if(friendship){
+      return res.status(500).json({
+        message: "Friend Request Could not be Send",
+      });
+    }
+    await Friendship.create({
+      from_user: req.user.id,
+      to_user: req.body.friend_id,
+      friendshipStatus: "pending",
+    });
+
+    let friend = await User.findById(req.body.friend_id);
+
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          friend: friend,
+        },
+        message: "Friend Request Sent",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Friend Request Could not be Send",
+    });
+  }
 };
 
 module.exports.receivedRequests = async (req, res) => {
@@ -76,12 +130,56 @@ module.exports.receivedRequests = async (req, res) => {
   }
 };
 
-module.exports.acceptRequest = (req, res) => {
-  return;
+module.exports.acceptRequest = async (req, res) => {
+  try {
+    await Friendship.findOneAndUpdate({
+      to_user: req.user.id,
+      from_user: req.body.friend_id,},{
+      friendshipStatus: "confirm",
+    });
+
+    let friend = await User.findById(req.body.friend_id);
+
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          friend: friend,
+        },
+        message: "Friend Request Accepted",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Friend Request Could not be Accepted",
+    });
+  }
 };
 
-module.exports.declineRequest = (req, res) => {
-  return;
+module.exports.declineRequest = async (req, res) => {
+  try {
+    await Friendship.deleteOne({
+      to_user: req.user.id,
+      from_user: req.body.friend_id,
+      friendshipStatus: "pending",
+    });
+
+    let friend = await User.findById(req.body.friend_id);
+
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          friend: friend,
+        },
+        message: "Friend Request Declined",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Friend Request Could not be Declined",
+    });
+  }
 };
 
 module.exports.sentRequests = async (req, res) => {
@@ -105,6 +203,28 @@ module.exports.sentRequests = async (req, res) => {
   }
 };
 
-module.exports.unsendRequest = (req, res) => {
-  return;
+module.exports.unsendRequest = async (req, res) => {
+  try {
+    await Friendship.deleteOne({
+      from_user: req.user.id,
+      to_user: req.body.friend_id,
+      friendshipStatus: "pending",
+    });
+
+    let friend = await User.findById(req.body.friend_id);
+
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          friend: friend,
+        },
+        message: "Friend Request Unsent",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Friend Request Could not be Unsend",
+    });
+  }
 };

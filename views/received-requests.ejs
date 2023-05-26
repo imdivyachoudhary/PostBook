@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="<%= assetPath('/css/friendship.css') %>" />
-<div class="friends-list">
-  <% friends.forEach(friends => { %>
+<div class="friends-list" id="received-requests-list" data-count="<%= friends.length %>">
+  <% friends.forEach(friend => { %>
 
-  <div class="friend">
+  <div class="friend" id="friend-<%= friend.id %>">
     <div class="display_pic">
       <% if (friend.avatar) { %>
       <img src="<%= friend.avatar %>" alt="" />

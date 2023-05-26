@@ -43,7 +43,6 @@ function toggleCommentReaction(ele, reactionType) {
       }
     },
     error: function (err) {
-      // $(".modal").modal("hide");
       console.log(err);
     },
   });
@@ -67,7 +66,10 @@ function deleteComment(ele, event) {
       $("#comments-count").attr("value", comments_count);
       if (comments_count)
         $(`#post-${post_id} .comments .count`).html(comments_count);
-      else $(`#post-${post_id} .comments .count`).html("");
+      else {
+        $(`#post-${post_id} .comments .count`).html("");
+        $(".comments-list p.show-failure-message").show();
+      }
     },
     error: function (err) {
       console.log(err);
@@ -94,19 +96,22 @@ function submitCommentForm(ele, event) {
       );
       $(".comments-list").prepend(commentDom);
 
-      let post_id = $("#modalComments #comment-form #form-post-id").attr("value");
-      
+      let post_id = $("#modalComments #comment-form #form-post-id").attr(
+        "value"
+      );
+
       $("#comment-form")[0].reset();
       $("#modalComments #comment-form #form-post-id").attr("value", post_id);
 
       let comments_count = parseInt($("#comments-count").val()) + 1;
       $("#comments-count").attr("value", comments_count);
-      if (comments_count)
+      if (comments_count) {
         $(`#post-${post_id} .comments .count`).html(comments_count);
-      else $(`#post-${post_id} .comments .count`).html("");
+        $(".comments-list p.show-failure-message").hide();
+      } else $(`#post-${post_id} .comments .count`).html("");
     },
     error: function (err) {
-      // $(".modal").modal("hide");
+      $(".modal").modal("hide");
       console.log(err);
     },
   });
@@ -121,19 +126,19 @@ function createCommentDom(comment, user) {
 
   return (dom = `<div class="comment-item" id="comment-${comment._id}">
                     <div class="comment-header">
-                    <div class="comment-user">
-                        <div class="display_pic">
-                        ${avatar}
-                        </div>
-                        <div class="display_name">${user.name}</div>
-                    </div>
-                    <div class="comment-reply-button" data-link="/comment/delete/${comment._id}" onclick="deleteComment(this,event)">Delete</div>
-                    <div class="comment-like-button">
-                        <div class="like-icon">
-                        <i class="far fa-heart"></i>
-                        </div>
-                        <div class="like-count"></div>
-                    </div>
+                      <div class="comment-user">
+                          <div class="display_pic">
+                          ${avatar}
+                          </div>
+                          <div class="display_name">${user.name}</div>
+                      </div>
+                      <div class="comment-reply-button" data-link="/comment/delete/${comment._id}" onclick="deleteComment(this,event)">Delete</div>
+                      <div class="comment-like-button">
+                          <div class="like-icon">
+                          <i class="far fa-heart"></i>
+                          </div>
+                          <div class="like-count"></div>
+                      </div>
                     </div>
                     <div class="comment-body">
                     <div class="comment">${comment.content}</div>

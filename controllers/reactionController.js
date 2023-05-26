@@ -80,12 +80,12 @@ module.exports.toggleReaction = async (req, res) => {
       data: {
         increaseCount: increaseCount,
       },
-      message: "Request Successful",
+      message: "Reaction Successfull",
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Internal Server Error",
+      message: "Reaction Unsuccessful",
     });
   }
 };

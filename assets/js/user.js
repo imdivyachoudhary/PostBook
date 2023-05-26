@@ -26,6 +26,9 @@ function showProfile() {
       // Add response in Modal body
       $("#profileBox").html(response);
     },
+    error: function (err) {
+      console.log(err);
+    },
   });
 }
 
@@ -37,6 +40,9 @@ function showPosts() {
       // Add response in Modal body
       $("#allPosts").html(response);
     },
+    error: function (err) {
+      console.log(err);
+    },
   });
 }
 
@@ -47,6 +53,9 @@ function showFriends() {
     success: function (response) {
       // Add response in Modal body
       $("#friendsList").html(response);
+    },
+    error: function (err) {
+      console.log(err);
     },
   });
 }

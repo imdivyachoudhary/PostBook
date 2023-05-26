@@ -20,6 +20,7 @@ router.get("/sign-out", userController.signOut);
 router.get("/profile/", passport.checkAuthentication, userController.user);
 router.get("/profile/posts", passport.checkAuthentication, userController.user);
 router.get("/profile/friends", passport.checkAuthentication, userController.user);
+
 router.get("/get-profile", passport.checkAuthentication, userController.profile);
 router.post("/profile/update/:id", userController.update);
 router.post("/profile/updateAvatar/:id", userController.updateAvatar);

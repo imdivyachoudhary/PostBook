@@ -1,18 +1,21 @@
 function openReactions(ele) {
-    $("modalReactions.modal-body").html("");
-    // $(".modal-body").html();
-    var post_id = $(ele).attr("data-id");
-    // console.log(post_id);
-  
-    $.ajax({
-      url: "/reaction/post",
-      type: "post",
-      data: { post_id: post_id },
-      success: function (response) {
-        // Add response in Modal body
-        $("#modalReactions .modal-body").html(response);
-      },
-    });
+  $("modalReactions.modal-body").html("");
+  // $(".modal-body").html();
+  var post_id = $(ele).attr("data-id");
+  // console.log(post_id);
+
+  $.ajax({
+    url: "/reaction/post",
+    type: "post",
+    data: { post_id: post_id },
+    success: function (response) {
+      // Add response in Modal body
+      $("#modalReactions .modal-body").html(response);
+    },
+    error: function (err) {
+      console.log(err);
+    },
+  });
 }
 
 function togglePostReaction(ele, reactionType) {
@@ -52,13 +55,10 @@ function togglePostReaction(ele, reactionType) {
         if (reactions_count)
           $(`#post-${post_id} .likes .count`).html(reactions_count);
         else $(`#post-${post_id} .likes .count`).html("");
-        $(`#post-${post_id} .likes .icon`).html(
-          `<i class="far fa-heart"></i>`
-        );
+        $(`#post-${post_id} .likes .icon`).html(`<i class="far fa-heart"></i>`);
       }
     },
     error: function (err) {
-      // $(".modal").modal("hide");
       console.log(err);
     },
   });
@@ -79,6 +79,9 @@ function openComments(ele) {
       // Add response in Modal body
       $("#modalComments .modal-body").html(response);
     },
+    error: function (err) {
+      console.log(err);
+    },
   });
 }
 
@@ -93,6 +96,11 @@ function deletePost(ele, event) {
       // console.log(response);
       // console.log(`#post-${response.data.post_id}`);
       $(`#post-${response.data.post_id}`).remove();
+
+      let total_posts = parseInt($(".posts").attr("data-count")) - 1;
+      $(".posts").attr("data-count",total_posts);
+      if(!total_posts)
+        $(".posts p.show-failure-message").show();
     },
     error: function (err) {
       console.log(err);
@@ -119,7 +127,11 @@ function submitPostForm(ele, event) {
       let postDom = createPostDom(response.data.post, response.data.user);
       $(".posts").prepend(postDom);
 
-      // $(responseElementId).html(response);
+      let total_posts = parseInt($(".posts").attr("data-count")) + 1
+      $(".posts").attr("data-count",total_posts);
+      if(total_posts)
+        $(".posts p.show-failure-message").hide();
+
     },
     error: function (err) {
       $(".modal").modal("hide");
@@ -139,51 +151,51 @@ function createPostDom(post, user) {
   let d = postDate.toLocaleDateString();
   let t = postDate.getHours() + ":" + postDate.getMinutes();
   return (dom = `<div class="post" id="post-${post._id}">
-              <div class="post-header">
-                <div class="display_pic">
-                  ${avatar}
-                </div>
-                <div class="display_name_time">
-                  <div class="display_name">${user.name}</div>
-                  <div class="display_time">
-                    <div>${d}, ${t}</div>
+                  <div class="post-header">
+                    <div class="display_pic">
+                      ${avatar}
+                    </div>
+                    <div class="display_name_time">
+                      <div class="display_name">${user.name}</div>
+                      <div class="display_time">
+                        <div>${d}, ${t}</div>
+                      </div>
+                    </div>
+                    <div class="delete-post">
+                      <i class="fa-solid fa-trash-can" data-link = "/post/delete/${post._id}" onclick="deletePost(this, event)"></i>
+                    </div>
                   </div>
-                </div>
-                <div class="delete-post">
-                  <i class="fa-solid fa-trash-can" data-link = "/post/delete/${post._id}" onclick="deletePost(this, event)"></i>
-                </div>
-              </div>
-              <div class="post-body">
-                <div class="post-image">
-                  <img src="${post.content}" alt="" />
-                </div>
-              </div>
-              <div class="post-footer">
-                <div class="likes">
-                  <div class="icon">
-                    <i class="far fa-heart"></i>
+                  <div class="post-body">
+                    <div class="post-image">
+                      <img src="${post.content}" alt="" />
+                    </div>
                   </div>
-                  <div
-                    class="count"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modalReactions"
-                    data-id="${post._id}"
-                    onclick="openReactions(this)"
-                  >  
+                  <div class="post-footer">
+                    <div class="likes">
+                      <div class="icon">
+                        <i class="far fa-heart"></i>
+                      </div>
+                      <div
+                        class="count"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalReactions"
+                        data-id="${post._id}"
+                        onclick="openReactions(this)"
+                      >  
+                      </div>
+                    </div>
+                    <div
+                      class="comments"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalComments"
+                      data-id="${post._id}"
+                      onclick="openComments(this)"
+                    >
+                      <div class="icon">
+                        <i class="fas fa-comment-dots"></i>
+                      </div>
+                      <div class="count"></div>
+                    </div>
                   </div>
-                </div>
-                <div
-                  class="comments"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modalComments"
-                  data-id="${post._id}"
-                  onclick="openComments(this)"
-                >
-                  <div class="icon">
-                    <i class="fas fa-comment-dots"></i>
-                  </div>
-                  <div class="count"></div>
-                </div>
-              </div>
-            </div>`);
+                </div>`);
 }

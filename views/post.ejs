@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<%= assetPath('/css/post.css') %>" />
 
-<div class="posts">
+<div class="posts" data-count="<%= posts.length %>">
   <% posts.forEach(post => { %> <% let user_reaction =
   checkUserReaction(user.id, post.reactions); %> <% let activeClass; %>
   <div class="post" id="post-<%= post.id %>">
