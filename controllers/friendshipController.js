@@ -53,7 +53,7 @@ module.exports.morePeople = async (req, res) => {
       $or: [{ from_user: req.user.id }, { to_user: req.user.id }],
     });
     let friends = await friendships.map((friendship) => {
-      return friendship.from_user.id == req.user.id
+      return friendship.from_user == req.user.id
         ? friendship.to_user
         : friendship.from_user;
     });
