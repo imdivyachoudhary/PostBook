@@ -23,7 +23,8 @@ router.get("/profile/friends", passport.checkAuthentication, userController.user
 
 router.get("/get-profile", passport.checkAuthentication, userController.profile);
 router.post("/profile/update/:id", userController.update);
-router.post("/profile/updateAvatar/:id", userController.updateAvatar);
+router.post("/profile/update-avatar/:id", userController.updateAvatar);
+router.post("/profile/update-password/:id", userController.updatePassword);
 
 router.get("/home", passport.checkAuthentication, userController.home);
 router.get("/home/chats", passport.checkAuthentication, userController.home);

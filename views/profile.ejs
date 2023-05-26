@@ -70,7 +70,7 @@
   aria-hidden="true"
 >
   <form
-    action="/user/profile/updateAvatar/<%= user.id %>"
+    action="/user/profile/update-avatar/<%= user.id %>"
     method="post"
     enctype="multipart/form-data"
     id="formUpdateAvatar"
@@ -100,15 +100,6 @@
               required
             />
           </div>
-          <!-- <div>
-              <input
-                type="text"
-                name="profile"
-                id="profile"
-                class="form-control"
-                required
-              />
-            </div> -->
         </div>
         <div class="modal-footer">
           <button
@@ -260,7 +251,9 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <form action="">
+  <form action="/user/profile/update-password/<%= user.id %>"
+    method="post"
+    id="updatePasswordForm">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -276,14 +269,14 @@
         </div>
         <div class="modal-body">
           <div class="form-item">
-            <label for="old_password" class="form-label"
+            <label for="current_password" class="form-label"
               >Current Password</label
             >
             <input
               type="password"
               class="form-control"
-              id="old_password"
-              name="old_password"
+              id="current_password"
+              name="current_password"
               required
             />
           </div>

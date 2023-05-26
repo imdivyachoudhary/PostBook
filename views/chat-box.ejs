@@ -1,19 +1,40 @@
 <link rel="stylesheet" href="<%= assetPath('/css/chat-box.css') %>" />
 
-<div class="messages-list" id="messages-list">
-  <% for( let i = 0; i < 30; i++ ) { %>
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="exampleModalLabel">Chat Box</h1>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="messages-list" id="messages-list">
+    <% for( let i = 0; i < 30; i++ ) { %>
 
-  <div class="message-item">
-    <div class="friend-message"><div>Hi</div></div>
+    <div class="message-item">
+      <div class="friend-message"><div>Hi</div></div>
+    </div>
+
+    <div class="message-item" <% if (i==29) { %> id="last-msg"
+    
+    <% } %>>
+      <div class="user-message"><div>Hello</div></div>
+    </div>
+
+    <% } %>
   </div>
-
-  <div class="message-item" <% if (i==29) { %> id="last-msg"
-   
-  <% } %>>
-    <div class="user-message"><div>Hello</div></div>
-  </div>
-
-  <% } %>
+</div>
+<div class="modal-footer">
+  <textarea
+    placeholder="message..."
+    style="flex-grow: 1"
+    name="input-message"
+    id="input-message"></textarea>
+  <button class="send-button">
+    <i class="fa-solid fa-paper-plane"></i>
+  </button>
 </div>
 
 <script src="<%= assetPath('/js/chat-box.js') %>"></script>

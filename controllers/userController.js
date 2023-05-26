@@ -82,52 +82,78 @@ module.exports.profile = (req, res) => {
 
 module.exports.update = async (req, res) => {
   // console.log(req.body);
-  if (req.user.id == req.params.id) {
-    let user = await User.findById(req.params.id);
+  try {
+    if (req.user.id == req.params.id) {
+      let user = await User.findById(req.params.id);
 
-    if (req.body.name) user.name = req.body.name;
-    if (req.body.email) user.email = req.body.email;
-    await user.save();
+      if (req.body.name) user.name = req.body.name;
+      if (req.body.email) user.email = req.body.email;
+      await user.save();
 
-    // return res.render("profile", {
-    //   layout: false,
-    //   user: user
-    // });
-    return res.redirect("back");
-  } else {
-    // return res.render("profile", {
-    //   layout: false,
-    // });
-    return res.redirect("back");
+      // return res.render("profile", {
+      //   layout: false,
+      //   user: user
+      // });
+      return res.redirect("back");
+    } else {
+      // return res.render("profile", {
+      //   layout: false,
+      // });
+      return res.redirect("back");
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
 module.exports.updateAvatar = async (req, res) => {
-  // console.log(req.body);
-  // console.log(JSON.stringify(req.body));
-  // console.log(req.files);
-  // console.log(req.file);
-  // console.log(req);
-  // return res.redirect("back");
-  if (req.user.id == req.params.id) {
-    let user = await User.findById(req.params.id);
-    User.uploadedAvatar(req, res, function (err) {
-      if (err) {
-        console.log("Multer Error : ", err);
-      }
-      if (req.file) {
-        // console.log(req.file);
-        if (user.avatar) {
-          fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+  try {
+    if (req.user.id == req.params.id) {
+      let user = await User.findById(req.params.id);
+      await User.uploadedAvatar(req, res, function (err) {
+        if (err) {
+          console.log("Multer Error : ", err);
         }
-        user.avatar = User.avatarPath + "/" + req.file.filename;
-        user.save();
+        if (req.file) {
+          // console.log(req.file);
+          if (user.avatar) {
+            fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+          }
+          user.avatar = User.avatarPath + "/" + req.file.filename;
+          user.save();
+        }
+      });
+      // });
+      // return res.render("profile", {
+      //   layout: false,
+      // });
+      return res.redirect("back");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.updatePassword = async (req, res) => {
+  try {
+    if (req.body.password != req.body.confirm_password) {
+      return res.redirect("back");
+    }
+    if (req.user.id == req.params.id) {
+      let user = await User.findById(req.params.id);
+      if (user.password != req.body.current_password) {
+        return res.redirect("back");
       }
-    });
-    // });
-    // return res.render("profile", {
-    //   layout: false,
-    // });
+      user.password = req.body.password;
+      await user.save();
+
+      // return res.render("profile", {
+      //   layout: false,
+      // });
+      return res.redirect("/user/sign-out");
+    }
+  } catch (error) {
+    console.log(error);
     return res.redirect("back");
   }
 };

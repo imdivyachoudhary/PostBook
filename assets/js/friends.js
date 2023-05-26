@@ -13,7 +13,7 @@ function openChatBox(ele) {
     data: { friend_id: friend_id },
     success: function (response) {
       // Add response in Modal body
-      $("#modalChatbox .modal-body").html(response);
+      $("#modalChatbox .modal-content").html(response);
     },
     error: function (err) {
       console.log(err);
