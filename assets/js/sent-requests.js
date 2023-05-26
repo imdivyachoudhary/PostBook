@@ -17,6 +17,9 @@ function unsendRequest(ele) {
       $("#more-people-list").attr("data-count", total_friends);
       if (total_friends) $("#more-people-list p.show-failure-message").hide();
     },
+    error: function (err) {
+      console.log(err);
+    },
   });
 }
 

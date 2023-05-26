@@ -18,6 +18,9 @@ function acceptRequest(ele) {
       if (total_friends)
         $("#friends-list p.show-failure-message").hide();
     },
+    error: function (err) {
+      console.log(err);
+    },
   });
 }
   
@@ -75,6 +78,9 @@ function declineRequest(ele) {
       $("#more-people-list").attr("data-count", total_friends);
       if (total_friends)
         $("#more-people-list p.show-failure-message").hide();
+    },
+    error: function (err) {
+      console.log(err);
     },
   });
 }
