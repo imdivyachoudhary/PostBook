@@ -102,12 +102,18 @@ function deletePost(ele, event) {
       // console.log(`#post-${response.data.post_id}`);
       $(`#post-${response.data.post_id}`).remove();
 
+      showNotification("success", response.message);
+
       let total_posts = parseInt($(".posts").attr("data-count")) - 1;
       $(".posts").attr("data-count", total_posts);
       if (!total_posts) $(".posts p.show-failure-message").show();
     },
     error: function (err) {
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }
@@ -131,6 +137,8 @@ function submitPostForm(ele, event) {
       let postDom = createPostDom(response.data.post, response.data.user);
       $(".posts").prepend(postDom);
 
+      showNotification("success", response.message);
+
       let total_posts = parseInt($(".posts").attr("data-count")) + 1;
       $(".posts").attr("data-count", total_posts);
       if (total_posts) $(".posts p.show-failure-message").hide();
@@ -138,6 +146,10 @@ function submitPostForm(ele, event) {
     error: function (err) {
       $(".modal").modal("hide");
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }
@@ -174,7 +186,14 @@ function createPostDom(post, user) {
                   </div>
                   <div class="post-footer">
                     <div class="likes">
-                      <div class="icon">
+                      <div
+                        class="icon"
+                        data-bs-toggle="collapse"
+                        href="#reaction-types-${post._id}"
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="multiCollapseExample1"
+                      >
                         <i class="far fa-heart"></i>
                       </div>
                       <div
@@ -184,6 +203,47 @@ function createPostDom(post, user) {
                         data-id="${post._id}"
                         onclick="openReactions(this)"
                       >  
+                      </div>
+                      <div
+                        class="collapse multi-collapse reaction-types"
+                        id="reaction-types-${post._id}"
+                      >
+                        
+                        <div
+                          class="reaction-icon"
+                          onclick="togglePostReaction(this,'like')"
+                          data-id="${post._id}"
+                          data-type="like"
+                        >
+                          <i class="fas fa-heart like"></i>
+                        </div>
+                        
+                        <div
+                          class="reaction-icon"
+                          onclick="togglePostReaction(this,'laugh')"
+                          data-id="${post._id}"
+                          data-type="laugh"
+                        >
+                          <i class="fa-solid fa-face-grin-tears laugh"></i>
+                        </div>
+                        
+                        <div
+                          class="reaction-icon"
+                          onclick="togglePostReaction(this,'angry')"
+                          data-id="${post._id}"
+                          data-type="angry"
+                        >
+                          <i class="fa-solid fa-face-angry angry"></i>
+                        </div>
+                        
+                        <div
+                          class="reaction-icon"
+                          onclick="togglePostReaction(this,'thumbs-up')"
+                          data-id="${post._id}"
+                          data-type="thumbs-up"
+                        >
+                          <i class="fa-solid fa-thumbs-up thumbs-up"></i>
+                        </div>
                       </div>
                     </div>
                     <div

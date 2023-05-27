@@ -11,6 +11,9 @@ function sendRequest(ele) {
     data: { friend_id: friend_id },
     success: function (response) {
       $(`#more-people-list #friend-${friend_id}`).remove();
+
+      showNotification("success", response.message);
+      
       let total_friends = parseInt($("#more-people-list").attr("data-count")) - 1;
       $("#more-people-list").attr("data-count", total_friends);
       if (!total_friends)
@@ -25,6 +28,10 @@ function sendRequest(ele) {
     },
     error: function (err) {
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }

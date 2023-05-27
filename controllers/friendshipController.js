@@ -42,7 +42,7 @@ module.exports.unfriend = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Friend Request Could not be Send",
+      message: "Friend Request could not be Send",
     });
   }
 };
@@ -81,7 +81,7 @@ module.exports.sendRequest = async (req, res) => {
     })
     if(friendship){
       return res.status(500).json({
-        message: "Friend Request Could not be Send",
+        message: "Friend Request could not be Send",
       });
     }
     await Friendship.create({
@@ -103,7 +103,7 @@ module.exports.sendRequest = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Friend Request Could not be Send",
+      message: "Friend Request could not be Send",
     });
   }
 };

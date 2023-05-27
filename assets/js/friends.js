@@ -29,6 +29,9 @@ function unfriend(ele) {
     data: { friend_id: friend_id },
     success: function (response) {
       $(`#friends-list #friend-${friend_id}`).remove();
+
+      showNotification("success", response.message);
+      
       let total_friends = parseInt($("#friends-list").attr("data-count")) - 1;
       $("#friends-list").attr("data-count", total_friends);
       if (!total_friends) $("#friends-list p.show-failure-message").show();
@@ -41,6 +44,10 @@ function unfriend(ele) {
     },
     error: function (err) {
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }
@@ -69,3 +76,4 @@ function createMorePeopleDom(friend) {
                   </div>
                 </div>`);
 }
+

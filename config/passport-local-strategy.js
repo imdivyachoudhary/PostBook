@@ -10,13 +10,15 @@ passport.use(
       usernameField: "email",
     },
     function (email, password, done) {
-      User.findOne({ email: email }, function (err, user) {
-        if (err) {
-          console.log("Error in finding user --> passpor");
-          return done(err);
+      User.findOne({ email: email }, function (error, user) {
+        if (error) {
+          console.log("Error in finding user --> passport : ",error);
+          req.flash("error","Something went Wrong");
+          return done(error);
         }
         if (!user || user.password != password) {
           console.log("Invalid Username/Password");
+          req.flash("warning","Invalid Email/Password");
           return done(null, false);
         }
         return done(null, user);
@@ -30,10 +32,11 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    if (err) {
-      console.log("Error in finding user --> passpor");
-      return done(err);
+  User.findById(id, function (error, user) {
+    if (error) {
+      console.log("Error in finding user --> passport : ",error);
+      req.flash("error","Something went Wrong");
+      return done(error);
     }
     return done(null, user);
   });

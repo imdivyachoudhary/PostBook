@@ -11,6 +11,9 @@ function acceptRequest(ele) {
     data: { friend_id: friend_id },
     success: function (response) {
       $(`#received-requests-list #friend-${friend_id}`).remove();
+
+      showNotification("success", response.message);
+      
       let total_friends = parseInt($("#received-requests-list").attr("data-count")) - 1;
       $("#received-requests-list").attr("data-count", total_friends);
       if (!total_friends)
@@ -25,10 +28,47 @@ function acceptRequest(ele) {
     },
     error: function (err) {
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }
   
+function declineRequest(ele) {
+  var friend_id = $(ele).attr("data-id");
+  $.ajax({
+    url: "/friendship/decline-request",
+    type: "post",
+    data: { friend_id: friend_id },
+    success: function (response) {
+      $(`#received-requests-list #friend-${friend_id}`).remove();
+
+      showNotification("success", response.message);
+      
+      let total_friends = parseInt($("#received-requests-list").attr("data-count")) - 1;
+      $("#received-requests-list").attr("data-count", total_friends);
+      if (!total_friends)
+        $("#received-requests-list p.show-failure-message").show();
+    
+      let friendDom = createMorePeopleDom(response.data.friend);
+      $(`#more-people-list`).prepend(friendDom);
+      total_friends = parseInt($("#more-people-list").attr("data-count")) + 1;
+      $("#more-people-list").attr("data-count", total_friends);
+      if (total_friends)
+        $("#more-people-list p.show-failure-message").hide();
+    },
+    error: function (err) {
+      console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
+    },
+  });
+}
+
 function createFriendDom(friend) {
   let avatar = `<i class="fas fa-user-circle"></i>`;
   if (friend.avatar) {
@@ -62,32 +102,6 @@ function createFriendDom(friend) {
                     </button>
                   </div>
                 </div>`);
-}
-  
-function declineRequest(ele) {
-  var friend_id = $(ele).attr("data-id");
-  $.ajax({
-    url: "/friendship/decline-request",
-    type: "post",
-    data: { friend_id: friend_id },
-    success: function (response) {
-      $(`#received-requests-list #friend-${friend_id}`).remove();
-      let total_friends = parseInt($("#received-requests-list").attr("data-count")) - 1;
-      $("#received-requests-list").attr("data-count", total_friends);
-      if (!total_friends)
-        $("#received-requests-list p.show-failure-message").show();
-    
-      let friendDom = createMorePeopleDom(response.data.friend);
-      $(`#more-people-list`).prepend(friendDom);
-      total_friends = parseInt($("#more-people-list").attr("data-count")) + 1;
-      $("#more-people-list").attr("data-count", total_friends);
-      if (total_friends)
-        $("#more-people-list p.show-failure-message").hide();
-    },
-    error: function (err) {
-      console.log(err);
-    },
-  });
 }
 
 function createMorePeopleDom(friend) {

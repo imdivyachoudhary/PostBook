@@ -19,6 +19,13 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 const mongoStore = require("connect-mongo")(session);
 
+const flash = require("connect-flash");
+const customMiddleware = require("./config/middleware");
+
+const chatServer = require("http").Server(app);
+const chatSockets = require("./config/chat-sockets").chatSockets(chatServer);
+const chatPort = 5000;
+
 require("./config/view-helper")(app);
 
 app.set("view engine", "ejs");
@@ -75,6 +82,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(customMiddleware.setFlash);
+
 app.use("/", require("./routes/index"));
 
 app.listen(port, (err) => {
@@ -83,6 +93,14 @@ app.listen(port, (err) => {
     return;
   }
   console.log(`App listening on port : ${port}`);
+});
+
+chatServer.listen(chatPort, (err) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log(`Chat Server listening on port : ${chatPort}`);
 });
 
 // app.get("/", (req, res) => {

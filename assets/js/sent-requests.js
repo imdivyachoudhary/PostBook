@@ -11,6 +11,9 @@ function unsendRequest(ele) {
     data: { friend_id: friend_id },
     success: function (response) {
       $(`#sent-requests-list #friend-${friend_id}`).remove();
+
+      showNotification("success", response.message);
+      
       let total_friends = parseInt($("#sent-requests-list").attr("data-count")) - 1;
       $("#sent-requests-list").attr("data-count", total_friends);
 
@@ -25,6 +28,10 @@ function unsendRequest(ele) {
     },
     error: function (err) {
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }

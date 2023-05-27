@@ -9,7 +9,7 @@
     aria-label="Close"
   ></button>
 </div>
-<div class="modal-body">
+<div class="modal-body" id="chat-modal-body">
   <div class="messages-list" id="messages-list">
     <% for( let i = 0; i < 30; i++ ) { %>
 
@@ -38,3 +38,9 @@
 </div>
 
 <script src="<%= assetPath('/js/chat-box.js') %>"></script>
+    
+<% if (user) { %>
+<script>
+  // new chatEngine("messages-list","<% user %>","<% friend %>","<% chatroom %>");
+</script>
+<% } %>

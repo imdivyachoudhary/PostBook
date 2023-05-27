@@ -17,12 +17,15 @@
       crossorigin="anonymous"
     />
     <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-    crossorigin="anonymous"
-  />
-  <script src="https://kit.fontawesome.com/133423a29f.js" crossorigin="anonymous"></script>
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/133423a29f.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="<%= assetPath('/css/layout.css') %>" />
     <link rel="stylesheet" href="<%= assetPath('/css/header.css') %>" />
     <link rel="stylesheet" href="<%= assetPath('/css/footer.css') %>" />
@@ -32,9 +35,12 @@
       href="https://fonts.googleapis.com/css2?family=Alkatra:wght@600&display=swap"
       rel="stylesheet"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
 
     <%- style %>
   </head>
@@ -47,6 +53,23 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script src="<%= assetPath('/js/layout.js') %>"></script>
+    <script src="<%= assetPath('/js/chat-engine.js') %>"></script>
+    
+    <script>
+      if ("<%= flash.success %>" && "<%= flash.success.length %>") {
+        showNotification("success","<%= flash.success %>");
+      }
+      if ("<%= flash.warning %>" && "<%= flash.warning.length %>") {
+        showNotification("warning","<%= flash.warning %>");
+      }
+      if ("<%= flash.error %>" && "<%= flash.error.length %>") {
+        showNotification("error","<%= flash.error %>");
+      }
+    </script>
+
     <%- script %>
   </body>
 </html>

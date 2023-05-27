@@ -42,14 +42,14 @@ module.exports.createComment = async (req, res) => {
             comment: comment,
             user: user,
           },
-          message: "Comment created",
+          message: "Comment Uploaded Successfully",
         });
       }
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Comment could not be created",
+      message: "Comment could not be Uploaded",
     });
   }
 };
@@ -64,23 +64,27 @@ module.exports.deleteComment = async (req, res) => {
       await Post.findByIdAndUpdate(post_id, {
         $pull: { comments: req.params.id },
       });
-      await Reaction.deleteMany({ reactionable: comment.id, onModel: "Comment" });
+      await Reaction.deleteMany({
+        reactionable: comment.id,
+        onModel: "Comment",
+      });
       if (req.xhr) {
         return res.status(200).json({
           data: {
             comment_id: req.params.id,
           },
-          message: "Comment deleted",
+          message: "Comment Deleted Successfully",
         });
       }
+    } else {
+      return res.status(400).json({
+        message: "Unauthorized Action",
+      });
     }
-    return res.status(400).json({
-      message: "Comment could not be deleted",
-    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Comment could not be deleted",
+      message: "Comment could not be Deleted",
     });
   }
 };

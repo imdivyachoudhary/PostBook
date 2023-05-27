@@ -62,6 +62,8 @@ function deleteComment(ele, event) {
       // console.log(response);
       $(`#comment-${response.data.comment_id}`).remove();
 
+      showNotification("success", response.message);
+
       let comments_count = parseInt($("#comments-count").val()) - 1;
       let post_id = $("#modalComments #comment-form #form-post-id").attr(
         "value"
@@ -76,6 +78,10 @@ function deleteComment(ele, event) {
     },
     error: function (err) {
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }
@@ -99,6 +105,8 @@ function submitCommentForm(ele, event) {
       );
       $(".comments-list").prepend(commentDom);
 
+      showNotification("success", response.message);
+
       let post_id = $("#modalComments #comment-form #form-post-id").attr(
         "value"
       );
@@ -116,6 +124,10 @@ function submitCommentForm(ele, event) {
     error: function (err) {
       $(".modal").modal("hide");
       console.log(err);
+      let status;
+      if (err.status == 500) status = "error";
+      else status = "warning";
+      showNotification(status, err.responseJSON.message);
     },
   });
 }
