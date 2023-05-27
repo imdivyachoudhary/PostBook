@@ -53,23 +53,33 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <!-- <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script> -->
+    <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"
+      integrity="sha512-pxLMWs4E33rW9tdIhovcCp2dCo9k4Q8eHw7CETjyjdXf4aX6wvsEBq+KdOJJRFALr6FxNoXx+jksgbE74TZjEw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="<%= assetPath('/js/layout.js') %>"></script>
     <script src="<%= assetPath('/js/chat-engine.js') %>"></script>
-    
+
     <script>
       if ("<%= flash.success %>" && "<%= flash.success.length %>") {
-        showNotification("success","<%= flash.success %>");
+        showNotification("success", "<%= flash.success %>");
       }
       if ("<%= flash.warning %>" && "<%= flash.warning.length %>") {
-        showNotification("warning","<%= flash.warning %>");
+        showNotification("warning", "<%= flash.warning %>");
       }
       if ("<%= flash.error %>" && "<%= flash.error.length %>") {
-        showNotification("error","<%= flash.error %>");
+        showNotification("error", "<%= flash.error %>");
       }
     </script>
 
-    <%- script %>
+    <% if (user) { %>
+    <script>
+      chatEngine("messages-list", "<%= user.email %>");
+    </script>
+    <% } %> <%- script %>
   </body>
 </html>

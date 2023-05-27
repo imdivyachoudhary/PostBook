@@ -1,40 +1,58 @@
-class chatEngine {
-  constructor(chatBoxId, user, friend, chatroom) {
-    this.chatBox = $(`#${chatBoxId}`);
-    this.user = user;
-    this.friend = friend;
-    this.chatroom = chatroom;
+var chatEngine = (chatBoxId, userEmail) => {
+  const socket = io("ws://localhost:3000");
 
-    this.socket = io.connect("http://localhost:5000");
+  socket.on("connect", function () {
+    console.log("Connection Established using sockets", userEmail);
+  });
 
-    if (this.user) {
-      this.connectionHandler();
-    }
+  // socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
 
-    // this.socket.emit("join_room", {
-    //   user_email: this.user.email,
-    //   chatroom: this.chatroom,
-    // });
+  // socket.on("hello from server", (...args) => {
+  //   console.log(...args);
+  // });
 
-    // this.socket.on("user_joined", function (data) {
-    //   console.log("A user joined", data);
-    // });
-  }
+  socket.emit("join_room", {
+    user_email: userEmail,
+    chatroom: "codeial",
+  });
 
-  connectionHandler() {
-    let self = this;
+  socket.on("user_joined", function (data) {
+    console.log("A user joined", data);
+  });
+};
 
-    this.socket.on("connect", function () {
-      console.log("Connection Established using sockets");
+// class chatEngine {
+//   constructor(chatBoxId, user, friend, chatroom) {
+//     this.chatBox = $(`#${chatBoxId}`);
+//     this.user = user;
+//     this.friend = friend;
+//     this.chatroom = chatroom;
 
-      self.socket.emit("join_room", {
-        user_email: self.user.email,
-        chatroom: self.chatroom,
-      });
+//     this.socket = io("http://localhost:3000");
 
-      self.socket.on("user_joined", function (data) {
-        console.log("A user joined", data);
-      });
-    });
-  }
-}
+//     this.socket.on("connect", function () {
+//       console.log("Connection Established using sockets");
+//     });
+
+//     if (this.user) {
+//       this.connectionHandler();
+//     }
+//   }
+
+//   connectionHandler() {
+//     let self = this;
+
+//     self.socket.on("connect", function () {
+//       console.log("Connection Established using sockets");
+
+//       self.socket.emit("join_room", {
+//         user_email: self.user.email,
+//         chatroom: self.chatroom,
+//       });
+
+//       self.socket.on("user_joined", function (data) {
+//         console.log("A user joined", data);
+//       });
+//     });
+//   }
+// }

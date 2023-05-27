@@ -24,7 +24,7 @@ const customMiddleware = require("./config/middleware");
 
 const chatServer = require("http").Server(app);
 const chatSockets = require("./config/chat-sockets").chatSockets(chatServer);
-const chatPort = 5000;
+const chatPort = 3000;
 
 require("./config/view-helper")(app);
 
@@ -72,8 +72,8 @@ app.use(
         mongooseConnection: db,
         autoRemove: "disabled",
       },
-      function (err) {
-        console.log(err || "connect-mongodb setup ok");
+      function (error) {
+        console.log(error || "connect-mongodb setup ok");
       }
     ),
   })
@@ -87,17 +87,17 @@ app.use(customMiddleware.setFlash);
 
 app.use("/", require("./routes/index"));
 
-app.listen(port, (err) => {
-  if (err) {
-    console.log(err);
+app.listen(port, (error) => {
+  if (error) {
+    console.log(error);
     return;
   }
   console.log(`App listening on port : ${port}`);
 });
 
-chatServer.listen(chatPort, (err) => {
-  if (err) {
-    console.log(err);
+chatServer.listen(chatPort, (error) => {
+  if (error) {
+    console.log(error);
     return;
   }
   console.log(`Chat Server listening on port : ${chatPort}`);
