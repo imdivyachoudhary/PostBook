@@ -8,7 +8,7 @@ $(document).ready(function () {
   let angry_count = parseInt($("#angry .reaction-count").attr("data-count"));
   let thumbs_up_count = parseInt($("#thumbs-up .reaction-count").attr("data-count"));
 
-  let total_reaction_count = like_count + laugh_count + angry + thumbs_up_count;
+  let total_reaction_count = like_count + laugh_count + angry_count + thumbs_up_count;
 
   if (total_reaction_count)
     $(`#post-${post_id} .likes .count`).html(total_reaction_count);

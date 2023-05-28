@@ -7,7 +7,7 @@ module.exports.getComments = async (req, res) => {
   try {
     let comments = await Comment.find({ post: req.body.post_id })
       .sort("-createdAt")
-      .populate("user")
+      .populate("user",["_id","name","avatar"])
       .populate("reactions");
 
     return res.render("comment", {

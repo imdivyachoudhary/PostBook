@@ -9,25 +9,25 @@ module.exports.getPostReactions = async (req, res) => {
       reactionType: "like",
       reactionable: req.body.post_id,
       onModel: "Post",
-    }).populate("user");
+    }).populate("user",["_id","name","avatar"]);
 
     let laugh = await Reaction.find({
       reactionType: "laugh",
       reactionable: req.body.post_id,
       onModel: "Post",
-    }).populate("user");
+    }).populate("user",["_id","name","avatar"]);
 
     let angry = await Reaction.find({
       reactionType: "angry",
       reactionable: req.body.post_id,
       onModel: "Post",
-    }).populate("user");
+    }).populate("user",["_id","name","avatar"]);
 
     let thumbs_up = await Reaction.find({
       reactionType: "thumbs-up",
       reactionable: req.body.post_id,
       onModel: "Post",
-    }).populate("user");
+    }).populate("user",["_id","name","avatar"]);
 
     // console.log(req.body, like, laugh, angry, thumbs_up);
     return res.render("reaction", { layout: false, like: like, laugh: laugh, angry: angry, thumbs_up: thumbs_up, post_id: req.body.post_id });

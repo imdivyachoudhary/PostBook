@@ -76,7 +76,7 @@
       }
     </script>
 
-    <% if (user) { %>
+    <% if (typeof user !== "undefined") { %>
     <script>
       chatEngine("messages-list", "<%= user.email %>");
     </script>
