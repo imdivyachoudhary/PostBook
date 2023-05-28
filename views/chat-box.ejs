@@ -13,14 +13,36 @@
   <div class="messages-list" id="messages-list">
     <% for( let i = 0; i < 30; i++ ) { %>
 
-    <div class="message-item">
-      <div class="friend-message"><div>Hi</div></div>
+    <div class="message-item friend-message-item">
+      <div class="message-header">
+        <div class="message-user">
+          <div class="display_pic">
+            <% if (friend.avatar) { %>
+            <img src="<%= friend.avatar %>" alt="" />
+            <% } else { %>
+            <i class="fas fa-user-circle"></i>
+            <% } %>
+          </div>
+          <div class="display_name"><%= friend.name %></div>
+        </div>
+      </div>
+      <div class="message-content">Hi</div>
     </div>
 
-    <div class="message-item" <% if (i==29) { %> id="last-msg"
-    
-    <% } %>>
-      <div class="user-message"><div>Hello</div></div>
+    <div class="message-item user-message-item" <% if (i==29) { %> id="last-msg" <% } %>>
+      <div class="message-header">
+        <div class="message-user">
+          <div class="display_name"></div>
+          <div class="display_pic">
+            <% if (user.avatar) { %>
+            <img src="<%= user.avatar %>" alt="" />
+            <% } else { %>
+            <i class="fas fa-user-circle"></i>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="message-content">HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</div>
     </div>
 
     <% } %>

@@ -3,44 +3,88 @@
 //     overflow: auto;
 // }
 .messages-list {
-    height: 500px;
-    background-color: antiquewhite;
-    // display: flex;
-    // flex-direction: column;
-    padding: 5px;
-    overflow: auto;
+  height: 500px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  overflow: auto;
 
-    .message-item{
-        width: 100%;
-        height: 50px;
-        padding: 2px;
-        font-size: 1.5rem;
-        // border-bottom: solid rgb(240, 211, 173) 2px;
+  .message-item {
+    display: flex;
+    flex-direction: column;
+    // width: 100%;
+    // height: 50px;
+    padding: 2px;
+    // font-size: 1.5rem;
+    // border-bottom: solid rgb(240, 211, 173) 2px;
 
-        .friend-message{
-            padding: 4px;
-            background-color: #ce78e3;
-            border-radius: 20px;
-            float: left;
+    .message-header {
+      display: flex;
+      align-items: center;
+      .message-user {
+        color: black;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        .display_pic {
+          padding: 2px;
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          i {
+            font-size: 2rem;
+          }
+          img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+          }
         }
-        .user-message{
-            padding: 4px;
-            background-color: cadetblue;
-            border-radius: 20px;
-            float: right;
+
+        .display_name {
+          font-size: 0.8rem;
+          font-weight: bold;
         }
+      }
     }
+    .message-content {
+        max-width: 80%;
+      width: max-content;
+      padding: 5px;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      overflow-wrap: break-word;
+    }
+  }
+  .friend-message-item {
+    align-items: start;
+    .message-content {
+        margin-left: 20px;
+        background-color: #ce78e3;
+    }
+  }
+  .user-message-item {
+    align-items: end;
+    .message-content {
+        margin-right: 20px;
+        background-color: cadetblue;
+    }
+  }
 }
 
-.send-button{
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: green;
-    i{
-        font-size: 1.5rem;
-        color: white;
-    }
+.send-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: green;
+  i {
+    font-size: 1.5rem;
+    color: white;
+  }
 }
 
 // #chatbox{

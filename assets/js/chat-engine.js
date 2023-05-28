@@ -1,8 +1,8 @@
-var chatEngine = (chatBoxId, userEmail) => {
+var chatEngine = (userId) => {
   const socket = io("ws://localhost:3000");
 
   socket.on("connect", function () {
-    console.log("Connection Established using sockets", userEmail);
+    console.log("Connection Established using sockets", userId);
   });
 
   // socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
@@ -12,7 +12,7 @@ var chatEngine = (chatBoxId, userEmail) => {
   // });
 
   socket.emit("join_room", {
-    user_email: userEmail,
+    userId: userId,
     chatroom: "codeial",
   });
 

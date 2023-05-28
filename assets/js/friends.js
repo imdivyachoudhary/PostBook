@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 function openChatBox(ele) {
   $("#modalChatbox .modal-body").html("");
-  var friend_id = $(ele).attr("data-id");
+  var friend_id = $(ele).attr("data-friend-id");
 
   $.ajax({
     url: "/chat/showChatbox",
