@@ -18,13 +18,22 @@
       border-radius: 50%;
       display: flex;
       align-items: center;
-      justify-content: center; }
+      justify-content: center;
+      position: relative; }
       .friends-list .friend .display_pic i {
         font-size: 2rem; }
       .friends-list .friend .display_pic img {
         height: 100%;
         width: 100%;
         border-radius: 50%; }
+      .friends-list .friend .display_pic .online-user {
+        background-color: #198754;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        position: absolute;
+        right: 5px;
+        top: 5px; }
     .friends-list .friend .display_name {
       flex-grow: 1;
       margin-left: 5px;

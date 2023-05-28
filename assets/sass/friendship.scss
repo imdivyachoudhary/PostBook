@@ -20,6 +20,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       i {
         font-size: 2rem;
       }
@@ -27,6 +28,15 @@
         height: 100%;
         width: 100%;
         border-radius: 50%;
+      }
+      .online-user{
+        background-color: #198754;
+        height: 10px;
+        width:  10px;
+        border-radius: 50%;
+        position: absolute;
+        right: 5px;
+        top: 5px;
       }
     }
 
