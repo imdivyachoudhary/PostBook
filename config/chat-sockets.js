@@ -19,7 +19,7 @@ module.exports.chatSockets = function (socketServer) {
       userController.updateOnlineStatusSocket(userId, false);
       console.log('User Offline ',userId);
 
-      socket.emit("user_offline",{userId: userId});
+      io.emit("user_offline",{userId: userId});
     });
 
     // socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
@@ -32,7 +32,7 @@ module.exports.chatSockets = function (socketServer) {
       userController.updateOnlineStatusSocket(data.userId, true);
       console.log('User Online ',data.userId);
 
-      socket.emit("user_online",data);
+      io.emit("user_online",data);
     });
 
 

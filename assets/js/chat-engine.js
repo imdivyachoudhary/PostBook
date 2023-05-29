@@ -27,12 +27,12 @@ class chatEngine {
 
     this.socket.on("user_online", function (data) {
       // console.log("A user joined", data);
-      $(`#friends-list #friend-${data.userId} .online-user`).show();
+      $(`#friends-list #friend-${data.userId} .online-status`).show();
     });
 
     this.socket.on("user_offline", function (data) {
       // console.log("A user joined", data);
-      $(`#friends-list #friend-${data.userId} .online-user`).hide();
+      $(`#friends-list #friend-${data.userId} .online-status`).hide();
     });
   }
 }
