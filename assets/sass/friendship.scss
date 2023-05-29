@@ -29,7 +29,7 @@
         width: 100%;
         border-radius: 50%;
       }
-      .online-user{
+      .online-status{
         display: none;
         background-color: #198754;
         height: 10px;
@@ -38,6 +38,9 @@
         position: absolute;
         right: 5px;
         top: 5px;
+      }
+      .online{
+        display: block;
       }
     }
 

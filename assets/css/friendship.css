@@ -26,7 +26,7 @@
         height: 100%;
         width: 100%;
         border-radius: 50%; }
-      .friends-list .friend .display_pic .online-user {
+      .friends-list .friend .display_pic .online-status {
         display: none;
         background-color: #198754;
         height: 10px;
@@ -35,6 +35,8 @@
         position: absolute;
         right: 5px;
         top: 5px; }
+      .friends-list .friend .display_pic .online {
+        display: block; }
     .friends-list .friend .display_name {
       flex-grow: 1;
       margin-left: 5px;

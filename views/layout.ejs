@@ -78,7 +78,7 @@
 
     <% if (typeof user !== "undefined") { %>
     <script>
-      chatEngine("<%= user.id %>");
+      var userChatEngine = new chatEngine("<%= user.id %>");
     </script>
     <% } %> <%- script %>
   </body>

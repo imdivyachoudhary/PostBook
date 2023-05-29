@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema(
     //     ref: "Friendship"
     //   }
     // ]
+    onlineStatus: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
@@ -43,7 +47,9 @@ let storage = multer.diskStorage({
   },
 });
 
-userSchema.statics.uploadedAvatar = multer({storage: storage}).single("avatar");
+userSchema.statics.uploadedAvatar = multer({ storage: storage }).single(
+  "avatar"
+);
 
 userSchema.statics.avatarPath = AVATAR_PATH;
 

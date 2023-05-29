@@ -30,4 +30,6 @@ router.get("/home", passport.checkAuthentication, userController.home);
 router.get("/home/chats", passport.checkAuthentication, userController.home);
 router.get("/home/more_people", passport.checkAuthentication, userController.home);
 
+router.post("/update-online-status", userController.updateOnlineStatus);
+
 module.exports = router;

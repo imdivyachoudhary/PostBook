@@ -9,38 +9,6 @@
     display: flex;
     flex-direction: column;
     padding: 2px; }
-    .messages-list .message-item .message-header {
-      display: flex;
-      align-items: center; }
-      .messages-list .message-item .message-header .message-user {
-        color: black;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center; }
-        .messages-list .message-item .message-header .message-user .display_pic {
-          padding: 2px;
-          height: 40px;
-          width: 40px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center; }
-          .messages-list .message-item .message-header .message-user .display_pic i {
-            font-size: 2rem; }
-          .messages-list .message-item .message-header .message-user .display_pic img {
-            height: 100%;
-            width: 100%;
-            border-radius: 50%; }
-        .messages-list .message-item .message-header .message-user .display_name {
-          font-size: 0.8rem;
-          font-weight: bold; }
-    .messages-list .message-item .message-content {
-      max-width: 80%;
-      width: max-content;
-      padding: 5px;
-      border-radius: 20px;
-      font-size: 1.2rem;
-      overflow-wrap: break-word; }
   .messages-list .friend-message-item {
     align-items: start; }
     .messages-list .friend-message-item .message-content {
@@ -51,6 +19,64 @@
     .messages-list .user-message-item .message-content {
       margin-right: 20px;
       background-color: cadetblue; }
+  .messages-list .message-header {
+    display: flex;
+    align-items: center; }
+    .messages-list .message-header .message-user {
+      color: black;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center; }
+      .messages-list .message-header .message-user .display_pic {
+        padding: 2px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .messages-list .message-header .message-user .display_pic i {
+          font-size: 2rem; }
+        .messages-list .message-header .message-user .display_pic img {
+          height: 100%;
+          width: 100%;
+          border-radius: 50%; }
+      .messages-list .message-header .message-user .display_name {
+        font-size: 0.8rem;
+        font-weight: bold; }
+  .messages-list .message-content {
+    max-width: 60%;
+    width: max-content;
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    overflow-wrap: break-word; }
+
+.message-header {
+  display: flex;
+  align-items: center; }
+  .message-header .message-user {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; }
+    .message-header .message-user .display_pic {
+      padding: 2px;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .message-header .message-user .display_pic i {
+        font-size: 2rem; }
+      .message-header .message-user .display_pic img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%; }
+    .message-header .message-user .display_name {
+      font-size: 1.2rem;
+      font-weight: bold; }
 
 .send-button {
   height: 50px;

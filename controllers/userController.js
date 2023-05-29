@@ -200,3 +200,38 @@ module.exports.home = (req, res) => {
     title: "Home",
   });
 };
+
+module.exports.updateOnlineStatus = async (req, res) => {
+  try {
+    let user = await User.findById(req.user.id);
+
+    user.onlineStatus = req.body.onlineStatus;
+    await user.save();
+
+    if (req.xhr) {
+      return res.status(200).json({
+        message: "Online status Uploaded Successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      message: "Online status could not be Updated",
+    });
+  }
+};
+
+module.exports.updateOnlineStatusSocket = async (userId, onlineStatus) => {
+  try {
+    let user = await User.findById(userId);
+    if (user) {
+      user.onlineStatus = onlineStatus;
+      await user.save();
+    }
+
+    // console.log("Online status Uploaded Successfully");
+  } catch (error) {
+    console.log(error);
+    // console.log("Online status could not be Updated");
+  }
+};

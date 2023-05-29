@@ -23,33 +23,35 @@ function openChatBox(ele) {
 
 function unfriend(ele) {
   var friend_id = $(ele).attr("data-id");
-  $.ajax({
-    url: "/friendship/unfriend",
-    type: "post",
-    data: { friend_id: friend_id },
-    success: function (response) {
-      $(`#friends-list #friend-${friend_id}`).remove();
+  if (confirm("Are you sure you want to unfriend?")) {
+    $.ajax({
+      url: "/friendship/unfriend",
+      type: "post",
+      data: { friend_id: friend_id },
+      success: function (response) {
+        $(`#friends-list #friend-${friend_id}`).remove();
 
-      showNotification("success", response.message);
-      
-      let total_friends = parseInt($("#friends-list").attr("data-count")) - 1;
-      $("#friends-list").attr("data-count", total_friends);
-      if (!total_friends) $("#friends-list p.show-failure-message").show();
+        showNotification("success", response.message);
 
-      let friendDom = createMorePeopleDom(response.data.friend);
-      $(`#more-people-list`).prepend(friendDom);
-      total_friends = parseInt($("#more-people-list").attr("data-count")) + 1;
-      $("#more-people-list").attr("data-count", total_friends);
-      if (total_friends) $("#more-people-list p.show-failure-message").hide();
-    },
-    error: function (err) {
-      console.log(err);
-      let status;
-      if (err.status == 500) status = "error";
-      else status = "warning";
-      showNotification(status, err.responseJSON.message);
-    },
-  });
+        let total_friends = parseInt($("#friends-list").attr("data-count")) - 1;
+        $("#friends-list").attr("data-count", total_friends);
+        if (!total_friends) $("#friends-list p.show-failure-message").show();
+
+        let friendDom = createMorePeopleDom(response.data.friend);
+        $(`#more-people-list`).prepend(friendDom);
+        total_friends = parseInt($("#more-people-list").attr("data-count")) + 1;
+        $("#more-people-list").attr("data-count", total_friends);
+        if (total_friends) $("#more-people-list p.show-failure-message").hide();
+      },
+      error: function (err) {
+        console.log(err);
+        let status;
+        if (err.status == 500) status = "error";
+        else status = "warning";
+        showNotification(status, err.responseJSON.message);
+      },
+    });
+  }
 }
 
 function createMorePeopleDom(friend) {
@@ -76,4 +78,3 @@ function createMorePeopleDom(friend) {
                   </div>
                 </div>`);
 }
-

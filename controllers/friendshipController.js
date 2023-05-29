@@ -7,8 +7,8 @@ module.exports.friends = async (req, res) => {
       friendshipStatus: "confirm",
       $or: [{ from_user: req.user.id }, { to_user: req.user.id }],
     })
-      .populate("from_user")
-      .populate("to_user");
+      .populate("from_user",["_id","name","avatar","onlineStatus"])
+      .populate("to_user",["_id","name","avatar","onlineStatus"]);
 
     let friends = await friendships.map((friendship) => {
       return friendship.from_user.id == req.user.id
@@ -59,7 +59,7 @@ module.exports.morePeople = async (req, res) => {
     });
     await friends.push(req.user.id);
 
-    let more_people = await User.find({ _id: { $nin: friends } });
+    let more_people = await User.find({ _id: { $nin: friends } }).select(["_id","name","avatar"]);
 
     return res.render("more-people", {
       layout: false,
@@ -90,7 +90,7 @@ module.exports.sendRequest = async (req, res) => {
       friendshipStatus: "pending",
     });
 
-    let friend = await User.findById(req.body.friend_id);
+    let friend = await User.findById(req.body.friend_id).select(["_id","name","avatar"]);
 
     if (req.xhr) {
       return res.status(200).json({
@@ -113,7 +113,7 @@ module.exports.receivedRequests = async (req, res) => {
     let friendships = await Friendship.find({
       friendshipStatus: "pending",
       to_user: req.user.id,
-    }).populate("from_user");
+    }).populate("from_user",["_id","name","avatar"]);
 
     let friends = await friendships.map((friendship) => {
       return friendship.from_user;
@@ -137,7 +137,7 @@ module.exports.acceptRequest = async (req, res) => {
       friendshipStatus: "confirm",
     });
 
-    let friend = await User.findById(req.body.friend_id);
+    let friend = await User.findById(req.body.friend_id).select(["_id","name","avatar","onlineStatus"]);
 
     if (req.xhr) {
       return res.status(200).json({
@@ -163,7 +163,7 @@ module.exports.declineRequest = async (req, res) => {
       friendshipStatus: "pending",
     });
 
-    let friend = await User.findById(req.body.friend_id);
+    let friend = await User.findById(req.body.friend_id).select(["_id","name","avatar"]);
 
     if (req.xhr) {
       return res.status(200).json({
@@ -186,7 +186,7 @@ module.exports.sentRequests = async (req, res) => {
     let friendships = await Friendship.find({
       friendshipStatus: "pending",
       from_user: req.user.id,
-    }).populate("to_user");
+    }).populate("to_user",["_id","name","avatar"]);
 
     let friends = await friendships.map((friendship) => {
       return friendship.to_user;
@@ -210,7 +210,7 @@ module.exports.unsendRequest = async (req, res) => {
       friendshipStatus: "pending",
     });
 
-    let friend = await User.findById(req.body.friend_id);
+    let friend = await User.findById(req.body.friend_id).select(["_id","name","avatar"]);
 
     if (req.xhr) {
       return res.status(200).json({
