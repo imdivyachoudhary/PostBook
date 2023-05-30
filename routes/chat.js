@@ -7,6 +7,9 @@ const chatController = require("../controllers/chatController");
 //   res.send("Hello World");
 // });
 
-router.post("/showChatbox", chatController.showChatbox);
+router.get("/", chatController.getChats);
+router.post("/show-chat", chatController.showChatbox);
+router.post("/create-message", chatController.createMessage);
+router.post("/update-read-status", chatController.updateReadStatus);
 
 module.exports = router;

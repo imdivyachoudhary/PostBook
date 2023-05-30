@@ -91,15 +91,6 @@ function createFriendDom(friend) {
                   >
                     <i class="fa-solid fa-message"></i>
                   </div>
-
-                  <div class="add-friend-icon">
-                    <button
-                      class="btn btn-sm"
-                      data-id="${friend._id}"
-                      onclick="unfriend(this)"
-                    >
-                      Unfriend
-                    </button>
                   </div>
                 </div>`);
 }

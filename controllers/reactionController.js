@@ -55,7 +55,7 @@ module.exports.toggleReaction = async (req, res) => {
 
     if (existingReaction) {
       if (existingReaction.reactionType == req.body.reactionType) {
-        reactionable.reactions.pull(existingReaction.id);
+        await reactionable.reactions.pull(existingReaction.id);
         await reactionable.save();
         await existingReaction.remove();
         increaseCount -= 1;

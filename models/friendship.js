@@ -19,6 +19,11 @@ const friendshipSchema = new mongoose.Schema(
       required: true,
       enum: ['pending','confirm'],
     },
+
+    chat: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Chat"
+    }
   },
   {
     timestamps: true,

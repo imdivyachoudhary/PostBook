@@ -2,7 +2,7 @@
 
 <div class="modal-header">
   
-    <div class="message-header">
+    <div class="message-header" id="chatbox-friend-<%= friend.id %>">
       <div class="message-user">
         <div class="display_pic">
           <% if (friend.avatar) { %>
@@ -10,6 +10,7 @@
           <% } else { %>
           <i class="fas fa-user-circle"></i>
           <% } %>
+          <div class="online-status <% if (friend.onlineStatus) { %> online <% } %>"></div>
         </div>
         <div class="display_name"><%= friend.name %></div>
       </div>
@@ -18,14 +19,32 @@
   <button
     type="button"
     class="btn-close"
-    data-bs-dismiss="modal"
     aria-label="Close"
+    onclick="closeChatBox('<%= user.id %>','<%= chat.chatroom %>')"
   ></button>
 </div>
 <div class="modal-body" id="chat-modal-body">
-  <div class="messages-list" id="messages-list">
-    <% for( let i = 0; i < 30; i++ ) { %>
+  <div class="messages-list" id="messages-list-<%= chat.chatroom %>">
+    <% chat.messages.forEach(message => { %>
 
+      <% if (message.from_user == user.id) { %>
+        <div class="message-item user-message-item">
+          <div class="message-header">
+            <div class="message-user">
+              <div class="display_name">You</div>
+              <div class="display_pic">
+                <% if (user.avatar) { %>
+                <img src="<%= user.avatar %>" alt="" />
+                <% } else { %>
+                <i class="fas fa-user-circle"></i>
+                <% } %>
+              </div>
+            </div>
+          </div>
+          <div class="message-content"><%= message.message %></div>
+        </div>
+    
+      <% } else { %>
     <div class="message-item friend-message-item">
       <div class="message-header">
         <div class="message-user">
@@ -39,36 +58,26 @@
           <div class="display_name"><%= friend.name %></div>
         </div>
       </div>
-      <div class="message-content">HiHiHiHiHiHiHiHiHiHi</div>
+      <div class="message-content"><%= message.message %></div>
     </div>
-
-    <div class="message-item user-message-item" <% if (i==29) { %> id="last-msg" <% } %>>
-      <div class="message-header">
-        <div class="message-user">
-          <div class="display_name">You</div>
-          <div class="display_pic">
-            <% if (user.avatar) { %>
-            <img src="<%= user.avatar %>" alt="" />
-            <% } else { %>
-            <i class="fas fa-user-circle"></i>
-            <% } %>
-          </div>
-        </div>
-      </div>
-      <div class="message-content">HelloHelloHelloHelloHelloHelloHello</div>
-    </div>
-
     <% } %>
+
+    <% }) %>
   </div>
 </div>
 <div class="modal-footer">
+  <input type="hidden" id="chatroom" value="<%= chat.chatroom %>">
+  <input type="hidden" id="from_user" value="<%= user.id %>">
+  <input type="hidden" id="userName" value="<%= user.name %>">
+  <input type="hidden" id="userAvatar" value="<%= user.avatar %>">
+  <input type="hidden" id="to_user" value="<%= friend.id %>">
   <textarea
-    placeholder="message..."
+    placeholder="Type message..."
     style="flex-grow: 1"
-    name="input-message"
+    name="message"
     id="input-message"></textarea>
-  <button class="send-button" onclick="sendMessage('<%= friend.id %>')">
-    <i class="fa-solid fa-paper-plane"></i>
+  <button class="send-button" onclick="sendMessage()">
+    <i class="fas fa-paper-plane"></i>
   </button>
 </div>
 

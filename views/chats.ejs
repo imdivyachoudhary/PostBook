@@ -9,22 +9,27 @@
       <% } else { %>
       <i class="fas fa-user-circle"></i>
       <% } %>
-      <div class="online-status <% if (friend.onlineStatus) { %> online <% } %>"></div>
+      <div
+        class="online-status <% if (friend.onlineStatus) { %> online <% } %>"
+      ></div>
     </div>
 
     <div class="display_name"><%= friend.name %></div>
 
-    <!-- <div
+    <div
       class="message-icon"
       data-bs-toggle="modal"
       data-bs-target="#modalChatbox"
       data-friend-id="<%= friend.id %>"
       onclick="openChatBox(this)"
     >
-      <i class="fa-solid fa-message"></i>
-    </div> -->
+      <div class="message-icon-show">
+        <i class="fas fa-comment-alt"></i>
+        <div class="new-message-status <% if (!friend.seen) { %> new-message <% } %>"></div>
+      </div>
+    </div>
 
-    <div class="add-friend-icon">
+    <!-- <div class="add-friend-icon">
       <button
         class="btn btn-sm"
         data-id="<%= friend.id %>"
@@ -32,7 +37,7 @@
       >
         Unfriend
       </button>
-    </div>
+    </div> -->
   </div>
 
   <% }) %>
@@ -45,11 +50,10 @@
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
+  data-bs-backdrop="static"
 >
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      
-    </div>
+    <div class="modal-content"></div>
   </div>
 </div>
 

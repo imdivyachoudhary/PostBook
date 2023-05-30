@@ -63,7 +63,7 @@ $(document).ready(function () {
   });
 
   $.ajax({
-    url: "/friendship/friends",
+    url: "/chat",
     type: "get",
     success: function (response) {
       // Add response in Modal body

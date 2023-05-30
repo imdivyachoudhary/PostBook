@@ -5,7 +5,7 @@ const chatSchema = new mongoose.Schema(
     chatroom: {
       type: String,
       required: true,
-      enum: ["pending", "confirm"],
+      unique: true,
     },
     users: [
       {
@@ -15,14 +15,14 @@ const chatSchema = new mongoose.Schema(
     ],
     messages: [
       {
-        message: { typeof: String },
-        send_time: { type: Date, default: Date.now },
-        receive_time: { type: Date },
+        message: String,
+        send_time: { type: Date, default: Date.now() },
+        receive_time: Date,
         from_user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         to_user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         read_status: {
           type: String,
-          enum: ["sent", "delivered", "read"],
+          enum: ["sent", "delivered", "seen"],
           default: "sent",
         },
       },
