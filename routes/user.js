@@ -12,6 +12,15 @@ router.post(
   userController.loginUser
 );
 
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile","email"] }));
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/user/sign-in" }),
+  userController.loginUser
+);
+
 router.get("/sign-up", userController.signUp);
 router.post("/sign-up", userController.createUser);
 

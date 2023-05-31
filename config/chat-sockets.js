@@ -19,7 +19,7 @@ module.exports.chatSockets = function (socketServer) {
       delete users[socket.id];
       delete socketIds[userId];
       userController.updateOnlineStatusSocket(userId, false);
-      console.log('User Offline ',userId);
+      // console.log('User Offline ',userId);
 
       io.emit("user_offline",{userId: userId});
     });
@@ -33,7 +33,7 @@ module.exports.chatSockets = function (socketServer) {
       users[socket.id] = data.userId;
       socketIds[data.userId] = socket.id;
       userController.updateOnlineStatusSocket(data.userId, true);
-      console.log('User Online ',data.userId);
+      // console.log('User Online ',data.userId);
 
       io.emit("user_online",data);
     });

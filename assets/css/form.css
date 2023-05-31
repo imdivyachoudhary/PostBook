@@ -27,6 +27,27 @@
     text-align: center; }
   .form-box button {
     width: 30%; }
+  .form-box .other-auth {
+    text-align: center; }
+    .form-box .other-auth .icon-lists {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .form-box .other-auth .icon-lists .icon {
+        background-color: antiquewhite;
+        margin: 5px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .form-box .other-auth .icon-lists .icon .google-icon {
+          font-size: 1.5rem; }
+        .form-box .other-auth .icon-lists .icon .github-icon {
+          font-size: 2rem; }
+      .form-box .other-auth .icon-lists a {
+        text-decoration: none; }
   .form-box span {
     padding: 2px 1px;
     color: gray; }
