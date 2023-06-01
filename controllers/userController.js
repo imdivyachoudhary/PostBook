@@ -1,7 +1,9 @@
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
+const queue = require("../config/kue");
 const passwordUpdateMailer = require("../mailers/passwordUpdateMailer");
+const passworUpdateEmailWorker = require("../workers/passworUpdateEmailWorker");
 
 module.exports.signIn = (req, res) => {
   // console.log(req.cookies);
@@ -177,7 +179,22 @@ module.exports.updatePassword = async (req, res) => {
       // return res.render("profile", {
       //   layout: false,
       // });
+
       // passwordUpdateMailer.passwordUpdated(user);
+      // queueMicrotask.create("emails", user).save(function (error) {
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log(job.id);
+      //   }
+      // });
+      // let job = queue.create("emails", user).save(function (error) {
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log(job.id);
+      //   }
+      // });
       req.flash(
         "success",
         "Password Updated Successfully \n Please Login Again"
