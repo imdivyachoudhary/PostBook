@@ -5,7 +5,7 @@ exports.passwordUpdated = (user) => {
     {
       user: user,
     },
-    "/passwordUpdated"
+    "/passwordUpdated.ejs"
   );
 
   nodeMailer.transporter.sendMail(
