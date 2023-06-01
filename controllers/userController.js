@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
+const passwordUpdateMailer = require("../mailers/passwordUpdateMailer");
 
 module.exports.signIn = (req, res) => {
   // console.log(req.cookies);
@@ -176,6 +177,7 @@ module.exports.updatePassword = async (req, res) => {
       // return res.render("profile", {
       //   layout: false,
       // });
+      // passwordUpdateMailer.passwordUpdated(user);
       req.flash(
         "success",
         "Password Updated Successfully \n Please Login Again"

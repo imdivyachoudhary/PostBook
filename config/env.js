@@ -3,7 +3,11 @@ const development = {
   asset_path: "./assets",
   session_cookie_key: "blahsomething",
   db_host: "127.0.0.1",
-  db: "codeial_development"
+  db: "codeial_development",
+  google_client_id: "160947273259-kjjluuqfmbp3vppjp4l7rj1k315lhmbp.apps.googleusercontent.com",
+  google_client_secret: "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",
+  smtp_user: "divyachoudhary.postbook",
+  smtp_password: "rootdivya"
 };
 
 const production = {
@@ -11,7 +15,11 @@ const production = {
   asset_path: "./public/assets",
   session_cookie_key: "blahsomething",
   db_host: "127.0.0.1",
-  db: "codeial_production"
+  db: "codeial_production",
+  google_client_id: "160947273259-kjjluuqfmbp3vppjp4l7rj1k315lhmbp.apps.googleusercontent.com",
+  google_client_secret: "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",
+  smtp_user: "divyachoudhary",
+  smtp_password: "root"
 };
 
 environment = eval(process.env.ENVIRONMENT);
