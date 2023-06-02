@@ -18,7 +18,7 @@ passport.use(
           return done(error);
         }
         if (!user || user.password != password) {
-          console.log("Invalid Username/Password");
+          console.log("Invalid Email/Password");
           req.flash("warning","Invalid Email/Password");
           return done(null, false);
         }

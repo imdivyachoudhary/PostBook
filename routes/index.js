@@ -21,4 +21,6 @@ router.use('/friendship',require('./friendship'));
 
 router.use('/chat',require('./chat'));
 
+router.use('/api',require('./api'));
+
 module.exports = router;
