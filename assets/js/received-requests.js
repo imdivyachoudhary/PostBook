@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  total_friends = parseInt($("#more-people-list").attr("data-count"));
-  if (!total_friends) $("#more-people-list p.show-failure-message").show();
+  total_friends = parseInt($("#received-requests-list").attr("data-count"));
+  if (!total_friends) $("#received-requests-list p.show-failure-message").show();
 });
 
 function acceptRequest(ele) {
