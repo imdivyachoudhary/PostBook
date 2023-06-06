@@ -16,7 +16,7 @@ const production = {
   name: "production",
   asset_path: "./public/assets",
   session_cookie_key: "blahsomething",
-  db_host: "127.0.0.1",
+  db_host: process.env.db_host,
   db: "codeial_production",
   google_client_id:
     "160947273259-kjjluuqfmbp3vppjp4l7rj1k315lhmbp.apps.googleusercontent.com",
