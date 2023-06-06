@@ -1,9 +1,11 @@
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
-const queue = require("../config/kue");
-const passwordUpdateMailer = require("../mailers/passwordUpdateMailer");
-const passworUpdateEmailWorker = require("../workers/passworUpdateEmailWorker");
+
+// Start Redis Server to use queue
+// const queue = require("../config/kue");
+// const passwordUpdateMailer = require("../mailers/passwordUpdateMailer");
+// const passworUpdateEmailWorker = require("../workers/passworUpdateEmailWorker");
 
 module.exports.signIn = (req, res) => {
   // console.log(req.cookies);

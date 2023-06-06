@@ -1,4 +1,5 @@
 const queue = require("../config/kue");
+// Start Redis Server to use queue
 
 const passwordUpdateMailer = require("../mailers/passwordUpdateMailer");
 
