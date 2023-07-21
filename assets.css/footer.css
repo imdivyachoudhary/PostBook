@@ -1,1 +1,1 @@
-#layout-footer{color:#fff;background:grey;padding:5px 10px;display:flex;justify-content:flex-start}#layout-footer a{color:#fff;text-decoration:none}#layout-footer .footer-nav ul{list-style:none}
+footer{color:#fff;background:grey;padding:10px 20px;display:flex;justify-content:space-evenly}footer a{color:#fff;text-decoration:none}footer .footer-nav ul{list-style:none}

@@ -96,6 +96,7 @@ app.listen(port, (error) => {
     return;
   }
   console.log(`App listening on port : ${port}`);
+  console.log(`${env.name}`)
 });
 
 chatServer.listen(chatPort, (error) => {

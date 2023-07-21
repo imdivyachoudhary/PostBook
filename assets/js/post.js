@@ -176,7 +176,7 @@ function createPostDom(post, user) {
                       </div>
                     </div>
                     <div class="delete-post">
-                      <i class="fa-solid fa-trash-can" data-link = "/post/delete/${post._id}" onclick="deletePost(this, event)"></i>
+                      <i class="fas fa-trash-alt" data-link = "/post/delete/${post._id}" onclick="deletePost(this, event)"></i>
                     </div>
                   </div>
                   <div class="post-body">
@@ -224,7 +224,7 @@ function createPostDom(post, user) {
                           data-id="${post._id}"
                           data-type="laugh"
                         >
-                          <i class="fa-solid fa-face-grin-tears laugh"></i>
+                        <img src="https://cdn-icons-png.flaticon.com/128/1791/1791352.png" />
                         </div>
                         
                         <div
@@ -233,7 +233,7 @@ function createPostDom(post, user) {
                           data-id="${post._id}"
                           data-type="angry"
                         >
-                          <i class="fa-solid fa-face-angry angry"></i>
+                        <img src="https://cdn-icons-png.flaticon.com/128/743/743418.png" />
                         </div>
                         
                         <div
@@ -242,7 +242,7 @@ function createPostDom(post, user) {
                           data-id="${post._id}"
                           data-type="thumbs-up"
                         >
-                          <i class="fa-solid fa-thumbs-up thumbs-up"></i>
+                        <img src="https://cdn-icons-png.flaticon.com/128/9554/9554962.png" />
                         </div>
                       </div>
                     </div>

@@ -35,8 +35,6 @@
         font-weight: bold; }
       .comments-list .comment-item .comment-header .comment-like-button {
         padding: 2px;
-        height: 30px;
-        width: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;

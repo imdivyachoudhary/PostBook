@@ -15,6 +15,9 @@
       justify-content: center; }
       .reactions .reaction-header .reaction-icon i {
         font-size: 1.5rem; }
+      .reactions .reaction-header .reaction-icon img {
+        height: 80%;
+        width: 80%; }
       .reactions .reaction-header .reaction-icon .like {
         color: rgba(255, 0, 0, 0.74); }
       .reactions .reaction-header .reaction-icon .like:hover {

@@ -1,1 +1,1 @@
-body{margin:0}body #layout-main{height:100%;overflow:auto}
+body{background-color:grey}p.show-failure-message{color:gray;text-align:center;font-size:2rem;display:none}

@@ -122,21 +122,24 @@
 
 .reaction-types {
   display: flex;
-  background-color: aliceblue;
+  background-color: white;
   border-radius: 20px;
-  padding: 5px;
+  padding: 10px;
   position: relative;
   top: -50px; }
   .reaction-types .reaction-icon {
     cursor: pointer;
     padding: 2px;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     display: flex;
     align-items: center;
     justify-content: center; }
     .reaction-types .reaction-icon i {
       font-size: 1.5rem; }
+    .reaction-types .reaction-icon img {
+      height: 80%;
+      width: 80%; }
     .reaction-types .reaction-icon .like {
       color: rgba(255, 0, 0, 0.74); }
     .reaction-types .reaction-icon .like:hover {
@@ -155,4 +158,4 @@
       color: rgba(0, 0, 255, 0.726); }
   .reaction-types .active {
     background-color: antiquewhite;
-    border-radius: 50%; }
+    border-radius: 15px; }

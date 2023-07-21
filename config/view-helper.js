@@ -7,13 +7,18 @@ module.exports = (app) => {
     if (env.name == "development") {
       return filePath;
     }
+    // console.log(filePath.substring(1),JSON.parse(
+    //   fs.readFileSync(
+    //     path.join(__dirname, "../public/assets/rev-manifest.json")
+    //   )
+    // )[filePath.substring(1)]);
     return (
       "/" +
       JSON.parse(
         fs.readFileSync(
           path.join(__dirname, "../public/assets/rev-manifest.json")
         )
-      )[filePath]
+      )[filePath.substring(1)]
     );
   };
 

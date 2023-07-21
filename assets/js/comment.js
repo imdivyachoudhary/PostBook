@@ -149,7 +149,7 @@ function createCommentDom(comment, user) {
                       </div>
                       <div class="comment-reply-button" data-link="/comment/delete/${comment._id}" onclick="deleteComment(this,event)">Delete</div>
                       <div class="comment-like-button">
-                          <div class="like-icon">
+                          <div class="like-icon" data-id="${comment._id}" onclick="toggleCommentReaction(this,'like')">
                           <i class="far fa-heart"></i>
                           </div>
                           <div class="like-count"></div>
