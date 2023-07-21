@@ -215,7 +215,7 @@ function createPostDom(post, user) {
                           data-id="${post._id}"
                           data-type="like"
                         >
-                          <i class="fas fa-heart like"></i>
+                        <img src="https://cdn-icons-png.flaticon.com/128/2107/2107845.png" />
                         </div>
                         
                         <div
@@ -242,7 +242,7 @@ function createPostDom(post, user) {
                           data-id="${post._id}"
                           data-type="thumbs-up"
                         >
-                        <img src="https://cdn-icons-png.flaticon.com/128/9554/9554962.png" />
+                        <img src="https://cdn-icons-png.flaticon.com/128/889/889221.png" />
                         </div>
                       </div>
                     </div>
