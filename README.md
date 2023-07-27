@@ -1,16 +1,16 @@
 # PostBook
 
-A platform where users can send and accept friend requests, upload posts and chat with friends.
-A user can sign up using email-id and password.
-Login using the emai-id and password.
-Users can update their avatars, passwords, name, email-id.
-Users can upload image posts and delete the post uploaded by them.
-Users can comment on posts and delete their own comments.
-Users can also react on posts (like,love,wow,angry,laugh) and like the comments.
-Users can send and unsend friend requests.
-Users can accept or decline friend requests.
-Users can unfriend anyone.
-Users once become friends, can see each other's online status and chat with each other.
+A platform where users can send and accept friend requests, upload posts and chat with friends.<br />
+-Sign up using email-id and password. <br />
+-Login using the emai-id and password. <br />
+-Users can update their avatars, passwords, name, email-id. <br />
+-Users can upload image posts and delete the post uploaded by them. <br />
+-Users can comment on posts and delete their own comments. <br />
+-Users can also react on posts (like,love,wow,angry,laugh) and like the comments. <br />
+-Users can send and unsend friend requests. <br />
+-Users can accept or decline friend requests. <br />
+-Users can unfriend anyone. <br />
+-Users once become friends, can see each other's online status and chat with each other. <br />
 
 ---
 ## Requirements
